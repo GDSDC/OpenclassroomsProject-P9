@@ -1,0 +1,21 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LITReview</title>
+    <link rel="stylesheet" href="{% static 'authentication/styles.css' %}"/>
+</head>
+<body>
+<header>
+    <nav>
+        <strong>LITReview</strong>
+    </nav>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>
