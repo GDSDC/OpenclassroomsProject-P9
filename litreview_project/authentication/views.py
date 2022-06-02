@@ -18,7 +18,7 @@ def sign_up_form(request):
             raw_password = form.cleaned_data.get('password1')
             return HttpResponse(f"""<h1>Nouvel utilisateur créé avec succès !!</h1>
             <p>Username : {username}</p>
-            <p>Password : {raw_password}""")
+            <p>Password : {raw_password}</p>""")
         else:
             return HttpResponse('<h1>form not valid</h1>')
 
