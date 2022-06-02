@@ -2,16 +2,19 @@
 {% block content %}
 
 <div class="box">
-    <section id="sign-up" class="sign__up">
+    <section id="sign-up" class="element">
         <p>Inscrivez-vous maintenant</p>
-        <button>S'inscrire</button>
+        <a href="/sign_up/">
+            <button>S'inscrire</button>
+        </a>
     </section>
 
-    <section id="sign-in" class="sign__in">
+    <section id="sign-in" class="element">
         <p>Connectez-vous</p>
         <input type="text" placeholder="Nom d'utilisateur">
         <input type="text" placeholder="Mot de passe">
         <button>Se connecter</button>
+    </section>
 </div>
-</section>
+
 {% endblock %}

@@ -17,21 +17,13 @@ main {
     flex-direction: row;
     align-items: center;
     height: 95%;
+    justify-content: center;
 
 }
 
-.sign__up {
+.element {
     /* Borders for debugging */
-    border: 2px solid yellow;
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    align-items: center;
-}
-
-.sign__in {
-    /* Borders for debugging */
-    border: 2px solid greenyellow;
+    border: 2px solid lightgreen;
     display: flex;
     flex-direction: column;
     width: 50%;
