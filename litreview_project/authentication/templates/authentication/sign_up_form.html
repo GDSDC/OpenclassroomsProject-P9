@@ -1,20 +1,16 @@
 {% extends 'authentication/base.html' %}
 {% block content %}
 
-
 <div class="box">
-    <div class="element">
-        <p>Inscrivez-vous</p>
-        <input type="text" placeholder="Nom d'utilisateur">
-        <input type="text" placeholder="Mot de passe">
-        <input type="text" placeholder="Confirmer mot de passe">
-        <div class="box">
-            <a href="/authentication/">
-                <button>Retourner</button>
-            </a>
-            <button>S'inscrire</button>
-        </div>
-    </div>
+    <form method="post" class="element">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <a href="/authentication/">
+            <button type="button">Retourner</button>
+        </a>
+        <button type="submit">S'inscrire</button>
+    </form>
 </div>
+
 
 {% endblock %}
