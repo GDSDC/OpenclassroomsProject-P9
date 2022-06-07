@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login
+from .forms import CustomUserCreationForm, CustomAuthenticationForm
 
 
 def auth_homepage(request):
@@ -19,14 +19,14 @@ def auth_homepage(request):
             return HttpResponse('<h1>form not valid</h1>')
 
     else:
-        form = AuthenticationForm(request.POST)
+        form = CustomAuthenticationForm(request.POST)
         return render(request, 'authentication/auth_homepage.html', {'form': form})
 
 
 def sign_up_form(request):
     """View for signing up with filling a form"""
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -38,5 +38,5 @@ def sign_up_form(request):
             return HttpResponse('<h1>form not valid</h1>')
 
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
         return render(request, 'authentication/sign_up_form.html', {'form': form})
