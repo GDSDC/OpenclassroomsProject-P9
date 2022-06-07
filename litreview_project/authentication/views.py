@@ -1,11 +1,26 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import authenticate, login
 
 
 def auth_homepage(request):
     """View for home page / authentication"""
-    return render(request, 'authentication/auth_homepage.html')
+    if request.method == 'POST':
+        username = request.POST.get('username', False)
+        password = request.POST.get('password', False)
+        user = authenticate(username=username, password=password)
+        if user is not None and user.is_active:
+            login(request, user)
+            return HttpResponse(f"""<h1>Nouvel connexion effectuée avec succès !!</h1>
+            <p>Username : {username}</p>
+            <p>Password : {password}</p>""")
+        else:
+            return HttpResponse('<h1>form not valid</h1>')
+
+    else:
+        form = AuthenticationForm(request.POST)
+        return render(request, 'authentication/auth_homepage.html', {'form': form})
 
 
 def sign_up_form(request):
@@ -24,4 +39,4 @@ def sign_up_form(request):
 
     else:
         form = UserCreationForm()
-        return render(request, 'authentication/sign_up_form.html',{'form': form})
+        return render(request, 'authentication/sign_up_form.html', {'form': form})
