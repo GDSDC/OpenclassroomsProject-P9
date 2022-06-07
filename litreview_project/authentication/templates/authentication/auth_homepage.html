@@ -13,7 +13,10 @@
         <p>Connectez-vous</p>
         <form method="post" class="element">
             {% csrf_token %}
-            {{ form.as_p }}
+            <p>Nom d'utilisateur</p>
+            {{form.username}}
+            <p>Mot de passe</p>
+            {{form.password}}
             <button type="submit">Se connecter</button>
         </form>
     </section>
