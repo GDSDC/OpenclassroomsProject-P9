@@ -1,17 +1,17 @@
 {% extends 'authentication/base.html' %}
 {% block content %}
 
-<div class="box">
-    <section id="sign-up" class="element">
+<div class="row__display">
+    <section id="sign-up" class="form">
         <p>Inscrivez-vous maintenant</p>
         <a href="/sign_up/">
             <button>S'inscrire</button>
         </a>
     </section>
 
-    <section id="sign-in" class="element">
+    <section id="sign-in" class="form">
         <p>Connectez-vous</p>
-        <form method="post" class="element">
+        <form method="post" class="form">
             {% csrf_token %}
             <p>Nom d'utilisateur</p>
             {{form.username}}

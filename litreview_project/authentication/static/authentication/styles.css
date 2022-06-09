@@ -12,7 +12,7 @@ main {
     border: 2px solid mediumblue;
 }
 
-.box {
+.row__display {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -21,7 +21,7 @@ main {
 
 }
 
-.element {
+.form {
     /* Borders for debugging */
     border: 2px solid lightgreen;
     display: flex;
