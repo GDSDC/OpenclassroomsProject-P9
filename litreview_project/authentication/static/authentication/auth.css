@@ -6,7 +6,7 @@
     justify-content: center;
 }
 
-.form {
+.vertical__dispay {
     /* Borders for debugging */
     border: 2px solid lightgreen;
     display: flex;

@@ -10,16 +10,16 @@
 {% block content %}
 <div class="row__display">
 
-    <section id="sign-up" class="form">
+    <section id="sign-up" class="vertical__dispay">
         <p>Inscrivez-vous maintenant</p>
         <a href="/sign_up/">
             <button>S'inscrire</button>
         </a>
     </section>
 
-    <section id="sign-in" class="form">
+    <section id="sign-in" class="vertical__dispay">
         <p>Connectez-vous</p>
-        <form method="post" class="form">
+        <form method="post" class="vertical__dispay">
             {% csrf_token %}
             <p>Nom d'utilisateur</p>
             {{form.username}}
