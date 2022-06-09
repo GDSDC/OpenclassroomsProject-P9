@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
-{% block content %}
 
+<!--Additional style for authentication-->
+{% load static %}
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'authentication/auth.css' %}"/>
+{% endblock %}
+
+<!--Content-->
+{% block content %}
 <div class="row__display">
     <form method="POST" class="form">
         {% csrf_token %}
@@ -10,12 +17,10 @@
         {{form.password1}}
         <p>Confirmer votre mot de passe</p>
         {{form.password2}}
-            <a href="/authentication/">
-                <button type="button">Retourner</button>
-            </a>
-            <button type="submit">S'inscrire</button>
+        <a href="/authentication/">
+            <button type="button">Retourner</button>
+        </a>
+        <button type="submit">S'inscrire</button>
     </form>
 </div>
-
-
 {% endblock %}

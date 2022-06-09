@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>LITReview</title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}"/>
+    <link rel="stylesheet" href="{% static 'base.css' %}"/>
+    {% block additional_css %}{% endblock %}
 </head>
 <body>
 <header>

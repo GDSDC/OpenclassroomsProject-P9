@@ -16,22 +16,8 @@ nav {
 main {
     /* Borders for debugging */
     border: 2px solid mediumblue;
-}
-
-.row__display {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     height: 95%;
     min-height: 380px;
-    justify-content: center;
 }
 
-.form {
-    /* Borders for debugging */
-    border: 2px solid lightgreen;
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    align-items: center;
-}
+

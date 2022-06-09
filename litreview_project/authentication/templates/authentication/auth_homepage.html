@@ -1,7 +1,15 @@
 {% extends 'base.html' %}
-{% block content %}
 
+<!--Additional style for authentication-->
+{% load static %}
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'authentication/auth.css' %}"/>
+{% endblock %}
+
+<!--Content-->
+{% block content %}
 <div class="row__display">
+
     <section id="sign-up" class="form">
         <p>Inscrivez-vous maintenant</p>
         <a href="/sign_up/">
@@ -20,6 +28,6 @@
             <button type="submit">Se connecter</button>
         </form>
     </section>
-</div>
 
+</div>
 {% endblock %}
