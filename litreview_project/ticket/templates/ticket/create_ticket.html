@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+<!--Additional style for authentication-->
+{% load static %}
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'ticket/ticket.css' %}"/>
+{% endblock %}
+
+{% block header %}
+<section class="menu">
+    <p>Flux</p>
+    <p>Posts</p>
+    <p>Abonnements</p>
+    <p>Se déconnecter</p>
+</section>
+{% endblock %}
+
+<!--Content-->
+{% block content %}
+<h1 class="title">Créer un ticket</h1>
+<div class="row__display">
+    <form method="POST" class="vertical__dispay">
+        {% csrf_token %}
+        <p>Titre</p>
+        {{form.title}}
+        <p>Description</p>
+        {{form.description}}
+        <p>Image</p>
+<!--        {{form.image}}-->
+        <button type="button">Télécharger fichier</button>
+        <button type="submit">Envoyer</button>
+    </form>
+</div>
+{% endblock %}
