@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
 
 
-def auth_homepage(request):
+def sign_in_form(request):
     """View for home page / authentication"""
     if request.method == 'POST':
         username = request.POST.get('username', False)
