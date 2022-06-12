@@ -11,11 +11,14 @@ def create_ticket(request):
         title = request.POST.get('title', False)
         description = request.POST.get('description', False)
         image = request.POST.get('image', False)
-        # TODO : get the user after being logged in or try to create a ticket after being logged
-        user = authenticate(username='test_ticket', password='test_ticket')
-        ticket = Ticket(title=title, description=description, image=image, user=user)
-        ticket.save()
-        return HttpResponse(f"<h1>Votre ticket \"{title}\" a bien été enregistré !!</h1>")
+        user = request.user
+        if user is not None and user.is_active:
+            ticket = Ticket(title=title, description=description, image=image, user=user)
+            ticket.save()
+            return HttpResponse(
+                f"<h1>Votre ticket \"{title}\" a bien été enregistré pour l'ulisateur \"{user.username}\" !!</h1>")
+        else:
+            return HttpResponse(f"<h1>Utilisateur non connecté : création de ticket impossible !!</h1>")
     else:
         form = TicketForm()
         return render(request, 'ticket/create_ticket.html', {'form': form})
