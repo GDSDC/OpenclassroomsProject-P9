@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<section class="menu">
+    <p>Flux</p>
+    <p><a href="/posts">Posts</a></p>
+    <p>Abonnements</p>
+    <p><a href="{% url 'logout' %}">Se déconnecter</a></p>
+</section>
+{% endblock %}
