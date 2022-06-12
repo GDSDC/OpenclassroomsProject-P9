@@ -1,0 +1,22 @@
+{% extends 'base_logged_in.html' %}
+
+<!--Additional style for authentication-->
+{% load static %}
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'ticket/ticket.css' %}"/>
+{% endblock %}
+
+<!--Content-->
+{% block content %}
+<h1 class="title">Vos posts</h1>
+<div class="row__display">
+    {% for ticket in tickets %}
+    <div class="vertical__dispay">
+        <p>{{ ticket.title }}</p>
+        <p>{{ ticket.description }}</p>
+<!--        TODO : insert image from database-->
+<!--        <img src="{{ ticket.image.url }}">-->
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
