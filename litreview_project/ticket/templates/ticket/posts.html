@@ -10,13 +10,17 @@
 {% block content %}
 <h1 class="title">Vos posts</h1>
 <div class="row__display">
-    {% for ticket in tickets %}
     <div class="vertical__dispay">
-        <p>{{ ticket.title }}</p>
-        <p>{{ ticket.description }}</p>
-<!--        TODO : insert image from database-->
-<!--        <img src="{{ ticket.image.url }}">-->
+        {% for ticket in tickets %}
+        <div class="vertical__dispay">
+            <p>Vous avez publié un ticket</p>
+            <p>{{ ticket.title }}</p>
+            <p>{{ ticket.time_created |date:'H:i, d F Y'}}</p>
+            <p>{{ ticket.description }}</p>
+            <!--        TODO : insert image from database-->
+            <!--        <img src="{{ ticket.image.url }}">-->
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 {% endblock %}
