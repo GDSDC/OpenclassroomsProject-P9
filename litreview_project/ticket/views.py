@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate
 from .forms import TicketForm
@@ -15,10 +15,9 @@ def create_ticket(request):
         if actual_user is not None and actual_user.is_active:
             ticket = Ticket(title=title, description=description, image=image, user=actual_user)
             ticket.save()
-            return HttpResponse(
-                f"<h1>Votre ticket \"{title}\" a bien été enregistré pour l'ulisateur \"{actual_user.username}\" !!</h1>")
+            return redirect('/posts/')
         else:
-            return HttpResponse(f"<h1>Utilisateur non connecté : création de ticket impossible !!</h1>")
+            return HttpResponse("<h1>Utilisateur non connecté : création de ticket impossible !!</h1>")
     else:
         form = TicketForm()
         return render(request, 'ticket/create_ticket.html', {'form': form})
@@ -31,14 +30,14 @@ def posts_page(request):
         tickets = Ticket.objects.filter(user=actual_user)
         return render(request, 'ticket/posts.html', {'tickets': tickets})
     else:
-        return HttpResponse("<h1>ERROR</h1>")
+        return HttpResponse("<h1>Utilisateur non connecté : création de ticket impossible !!</h1>")
 
 
 def delete_ticket(request, id):
     """Link to delete a ticket"""
     ticket = Ticket.objects.get(id=id)
     ticket.delete()
-    return posts_page(request)
+    return redirect('/posts/')
 
 
 def edit_ticket(request, id):
@@ -52,7 +51,7 @@ def edit_ticket(request, id):
         ticket.description = description
         # title.image=image
         ticket.save()
-        return posts_page(request)
+        return redirect('/posts/')
     else:
         ticket = Ticket.objects.get(id=id)
         form = TicketForm(instance=ticket)

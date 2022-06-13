@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
@@ -12,11 +12,9 @@ def sign_in_form(request):
         user = authenticate(username=username, password=password)
         if user is not None and user.is_active:
             login(request, user)
-            return HttpResponse(f"""<h1>Nouvel connexion effectuée avec succès !!</h1>
-            <p>Username : {username}</p>
-            <p>Password : {password}</p>""")
+            return redirect('/create_ticket/')
         else:
-            return HttpResponse('<h1>form not valid</h1>')
+            return HttpResponse('<h1>sign in form not valid</h1>')
 
     else:
         form = CustomAuthenticationForm(request.POST)
@@ -29,13 +27,11 @@ def sign_up_form(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            return HttpResponse(f"""<h1>Nouvel utilisateur créé avec succès !!</h1>
-            <p>Username : {username}</p>
-            <p>Password : {raw_password}</p>""")
+            # username = form.cleaned_data.get('username')
+            # raw_password = form.cleaned_data.get('password1')
+            return redirect('/authentication/')
         else:
-            return HttpResponse('<h1>form not valid</h1>')
+            return HttpResponse('<h1>sign up form not valid</h1>')
 
     else:
         form = CustomUserCreationForm()
