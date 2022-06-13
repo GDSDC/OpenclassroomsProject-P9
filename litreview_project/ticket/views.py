@@ -33,8 +33,27 @@ def posts_page(request):
     else:
         return HttpResponse("<h1>ERROR</h1>")
 
-def delete_ticket(request,id):
+
+def delete_ticket(request, id):
     """Link to delete a ticket"""
     ticket = Ticket.objects.get(id=id)
     ticket.delete()
     return posts_page(request)
+
+
+def edit_ticket(request, id):
+    """View to edit a ticket"""
+    if request.method == 'POST':
+        title = request.POST.get('title', False)
+        description = request.POST.get('description', False)
+        # image = request.POST.get('image', False)
+        ticket = Ticket.objects.get(id=id)
+        ticket.title = title
+        ticket.description = description
+        # title.image=image
+        ticket.save()
+        return posts_page(request)
+    else:
+        ticket = Ticket.objects.get(id=id)
+        form = TicketForm(instance=ticket)
+        return render(request, 'ticket/create_ticket.html', {'form': form})

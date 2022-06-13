@@ -1,8 +1,8 @@
 from django import forms
+from .models import Ticket
 
-class TicketForm(forms.Form):
+class TicketForm(forms.ModelForm):
     """Form for creating tickets"""
-    title = forms.CharField(max_length=128)
-    description = forms.CharField(max_length=2048)
-    image = forms.ImageField()
-    time_created = forms.DateTimeField()
+    class Meta:
+        model = Ticket
+        fields = ['title','description','image']

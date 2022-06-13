@@ -19,7 +19,9 @@
             <p>{{ ticket.description }}</p>
             <!--        TODO : insert image from database-->
             <!--        <img src="{{ ticket.image.url }}">-->
-            <button>Modifier</button>
+            <a href="edit_ticket/{{ ticket.id }}">
+                <button>Modifier</button>
+            </a>
             <a href="delete_ticket/{{ ticket.id }}">
                 <button>Supprimer</button>
             </a>
