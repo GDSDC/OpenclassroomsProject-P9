@@ -26,5 +26,6 @@ urlpatterns = [
     path('create_ticket/', ticket_views.create_ticket),
     path('posts/', ticket_views.posts_page),
     path('posts/delete_ticket/<int:id>', ticket_views.delete_ticket),
+    path('posts/edit_ticket/<int:id>', ticket_views.edit_ticket),
 
 ]
