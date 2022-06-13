@@ -19,6 +19,10 @@
             <p>{{ ticket.description }}</p>
             <!--        TODO : insert image from database-->
             <!--        <img src="{{ ticket.image.url }}">-->
+            <button>Modifier</button>
+            <a href="delete_ticket/{{ ticket.id }}">
+                <button>Supprimer</button>
+            </a>
         </div>
         {% endfor %}
     </div>

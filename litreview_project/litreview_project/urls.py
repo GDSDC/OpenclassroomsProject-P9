@@ -24,6 +24,7 @@ urlpatterns = [
     path('sign_up/', auth_views.sign_up_form),
     path('logout/', include("django.contrib.auth.urls")),
     path('create_ticket/', ticket_views.create_ticket),
-    path('posts/', ticket_views.posts_page)
+    path('posts/', ticket_views.posts_page),
+    path('posts/delete_ticket/<int:id>', ticket_views.delete_ticket),
 
 ]

@@ -32,3 +32,9 @@ def posts_page(request):
         return render(request, 'ticket/posts.html', {'tickets': tickets})
     else:
         return HttpResponse("<h1>ERROR</h1>")
+
+def delete_ticket(request,id):
+    """Link to delete a ticket"""
+    ticket = Ticket.objects.get(id=id)
+    ticket.delete()
+    return posts_page(request)
