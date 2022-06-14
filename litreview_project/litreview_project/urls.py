@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from authentication import views as auth_views
 from ticket import views as ticket_views
+from posts import views as posts_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,7 +25,7 @@ urlpatterns = [
     path('sign_up/', auth_views.sign_up_form),
     path('logout/', include("django.contrib.auth.urls")),
     path('create_ticket/', ticket_views.create_ticket),
-    path('posts/', ticket_views.posts_page),
+    path('posts/', posts_views.posts_page),
     path('posts/delete_ticket/<int:id>', ticket_views.delete_ticket),
     path('posts/edit_ticket/<int:id>', ticket_views.edit_ticket),
 

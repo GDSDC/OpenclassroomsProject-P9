@@ -23,15 +23,6 @@ def create_ticket(request):
         return render(request, 'ticket/create_ticket.html', {'form': form})
 
 
-def posts_page(request):
-    """View to see and change your own publications (ticket and/or reviews)"""
-    actual_user = request.user
-    if actual_user is not None and actual_user.is_active:
-        tickets = Ticket.objects.filter(user=actual_user)
-        return render(request, 'ticket/posts.html', {'tickets': tickets})
-    else:
-        return HttpResponse("<h1>Utilisateur non connecté : création de ticket impossible !!</h1>")
-
 
 def delete_ticket(request, id):
     """Link to delete a ticket"""
