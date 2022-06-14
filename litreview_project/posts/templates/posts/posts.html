@@ -18,9 +18,11 @@
             <p>{{ ticket.time_created |date:'H:i, d F Y'}}</p>
             <p>{{ ticket.description }}</p>
             <!--        TODO : insert image from database-->
-<!--            {% if ticket.image %}-->
-<!--            <img src="{{ ticket.image.url }}">-->
-<!--            {% endif %}-->
+            {% if ticket.image %}
+<!--            <img src="/media/images/286198897_733004427840747_4699964109624406510_n.jpeg">-->
+            <img src="{{ ticket.image.url }}">
+            <p>{{ ticket.image.url }}</p>
+            {% endif %}
             <a href="{% url "edit_ticket" ticket.id %}">
                 <button>Modifier</button>
             </a>
