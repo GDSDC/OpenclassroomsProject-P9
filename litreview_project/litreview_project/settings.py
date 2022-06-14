@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     'authentication',
     'ticket',
+    'feed',
+    'posts',
 ]
 
 MIDDLEWARE = [
