@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from authentication import views as auth_views
 from ticket import views as ticket_views
 from posts import views as posts_views
@@ -33,4 +35,10 @@ urlpatterns = [
     path('ticket/<int:id>/delete/', ticket_views.delete_ticket, name='delete_ticket'),
     path('ticket/<int:id>/edit/', ticket_views.edit_ticket, name='edit_ticket'),
 
+    # TESTING
+    path('user_infos/', ticket_views.show_user_infos)
+
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
