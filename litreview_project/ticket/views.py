@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate
-from .forms import TicketForm
-from .models import Ticket
+from ticket.forms import TicketForm
+from ticket.models import Ticket
 
 
 def create_ticket(request):
