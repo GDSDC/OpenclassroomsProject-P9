@@ -10,4 +10,4 @@ def posts_page(request):
         tickets = Ticket.objects.filter(user=actual_user)
         return render(request, 'posts/posts.html', {'tickets': tickets})
     else:
-        return HttpResponse("<h1>Utilisateur non connecté : création de ticket impossible !!</h1>")
+        return redirect('/authentication/')
