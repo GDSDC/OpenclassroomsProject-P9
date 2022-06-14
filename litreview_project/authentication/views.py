@@ -34,9 +34,18 @@ def sign_up_form(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            # username = form.cleaned_data.get('username')
-            # raw_password = form.cleaned_data.get('password1')
-            return redirect('/authentication/')
+            # REAL LIFE ACTION BELLOW to uncomment
+            # return redirect('/authentication/')
+
+            # FOR DEBUGGING ONLY
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            if user is not None and user.is_active:
+                login(request, user)
+                return redirect('/create_ticket/')
+            # TODO : uncomment REAL LIFE ACTION and comment FOR DEBUGGING ONLY
+
         else:
             return HttpResponse('<h1>sign up form not valid</h1>')
 
