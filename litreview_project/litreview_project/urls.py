@@ -21,13 +21,13 @@ from posts import views as posts_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',auth_views.homepage),
-    path('authentication/', auth_views.sign_in_form),
-    path('sign_up/', auth_views.sign_up_form),
-    path('logout/', include("django.contrib.auth.urls")),
-    path('create_ticket/', ticket_views.create_ticket),
-    path('posts/', posts_views.posts_page),
-    path('posts/delete_ticket/<int:id>', ticket_views.delete_ticket),
-    path('posts/edit_ticket/<int:id>', ticket_views.edit_ticket),
+    path('', auth_views.homepage),
+    path('auth/', auth_views.sign_in_form),
+    path('auth/sign_up/', auth_views.sign_up_form, name='sign_up'),
+    path('auth/logout/', include("django.contrib.auth.urls")),
+    path('ticket/create/', ticket_views.create_ticket, name='create_ticket'),
+    path('ticket/<int:id>/delete/', ticket_views.delete_ticket, name='delete_ticket'),
+    path('ticket/<int:id>/edit/', ticket_views.edit_ticket, name='edit_ticket'),
+    path('posts/', posts_views.posts_page, name='posts'),
 
 ]

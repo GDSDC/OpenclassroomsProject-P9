@@ -9,7 +9,7 @@ def homepage(request):
     if actual_user is not None and actual_user.is_active:
         return redirect('/posts/')
     else:
-        return redirect('/authentication/')
+        return redirect('/auth/')
 
 def sign_in_form(request):
     """View for home page / authentication"""
@@ -19,7 +19,7 @@ def sign_in_form(request):
         user = authenticate(username=username, password=password)
         if user is not None and user.is_active:
             login(request, user)
-            return redirect('/create_ticket/')
+            return redirect('/ticket/create/')
         else:
             return HttpResponse('<h1>sign in form not valid</h1>')
 
@@ -35,7 +35,7 @@ def sign_up_form(request):
         if form.is_valid():
             form.save()
             # REAL LIFE ACTION BELLOW to uncomment
-            # return redirect('/authentication/')
+            # return redirect('/auth/')
 
             # FOR DEBUGGING ONLY
             username = form.cleaned_data.get('username')
@@ -43,7 +43,7 @@ def sign_up_form(request):
             user = authenticate(username=username, password=raw_password)
             if user is not None and user.is_active:
                 login(request, user)
-                return redirect('/create_ticket/')
+                return redirect('/ticket/create/')
             # TODO : uncomment REAL LIFE ACTION and comment FOR DEBUGGING ONLY
 
         else:

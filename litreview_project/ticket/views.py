@@ -20,7 +20,7 @@ def create_ticket(request):
             form = TicketForm()
             return render(request, 'ticket/create_ticket.html', {'form': form})
     else:
-        return redirect('/authentication/')
+        return redirect('/auth/')
 
 
 
