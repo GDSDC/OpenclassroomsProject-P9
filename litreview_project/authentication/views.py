@@ -3,6 +3,13 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from authentication.forms import CustomUserCreationForm, CustomAuthenticationForm
 
+def homepage(request):
+    """Redirection when no specific route is given '/'"""
+    actual_user = request.user = request.user
+    if actual_user is not None and actual_user.is_active:
+        return redirect('/posts/')
+    else:
+        return redirect('/authentication/')
 
 def sign_in_form(request):
     """View for home page / authentication"""

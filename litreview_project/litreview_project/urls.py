@@ -21,6 +21,7 @@ from posts import views as posts_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',auth_views.homepage),
     path('authentication/', auth_views.sign_in_form),
     path('sign_up/', auth_views.sign_up_form),
     path('logout/', include("django.contrib.auth.urls")),
