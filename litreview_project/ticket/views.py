@@ -13,29 +13,32 @@ def create_ticket(request):
     actual_user = request.user
     if actual_user is not None and actual_user.is_active:
         if request.method == 'POST':
-            form = TicketForm(request.POST, request.FILES)
+            title = request.POST.get('title', False)
+            description = request.POST.get('description', False)
+            image = request.POST.get('image', False)
+            form = TicketForm({'title': title,
+                               'description': description,
+                               'image': image,
+                               'user': actual_user},
+                              request.FILES)
             if form.is_valid():
-                form.user = actual_user
                 form.save()
-            # title = request.POST.get('title', False)
-            # description = request.POST.get('description', False)
-            # image = request.POST.get('image', False)
-            # ticket = Ticket(title=title, description=description, image=image, user=actual_user)
-            # form = TicketForm(instance=ticket)
-            # form.save()
-            # ticket.save()
                 return redirect('/posts/')
+            else:
+                return HttpResponse(f"<p>{form.errors}</p>")
         else:
             form = TicketForm()
             return render(request, 'ticket/create_ticket.html', {'form': form})
     else:
         return redirect('/auth/')
 
+
 def show_user_infos(request):
     actual_user = request.user
     if actual_user is not None and actual_user.is_active:
         result = User.objects.get(username=actual_user).id
         return HttpResponse(f"<h1>{result}</h1>")
+
 
 def delete_ticket(request, id):
     """Link to delete a ticket"""
