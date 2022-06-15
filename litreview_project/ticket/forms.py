@@ -5,5 +5,5 @@ class TicketForm(forms.ModelForm):
     """Form for creating tickets"""
     class Meta:
         model = Ticket
-        fields = ['title','description','image','user']
+        fields = ['title','description','image','user', 'id']
 

@@ -49,17 +49,28 @@ def delete_ticket(request, id):
 
 def edit_ticket(request, id):
     """View to edit a ticket"""
-    if request.method == 'POST':
-        title = request.POST.get('title', False)
-        description = request.POST.get('description', False)
-        # image = request.POST.get('image', False)
+    actual_user = request.user
+    if actual_user is not None and actual_user.is_active:
         ticket = Ticket.objects.get(id=id)
-        ticket.title = title
-        ticket.description = description
-        # title.image=image
-        ticket.save()
-        return redirect('/posts/')
+
+        if request.method == 'POST':
+            title = request.POST.get('title', False)
+            description = request.POST.get('description', False)
+            image = request.POST.get('image', False)
+            form = TicketForm({'title': title,
+                               'description': description,
+                               'image': image,
+                               'user': actual_user,
+                               'id' : id},
+                              request.FILES, instance=ticket)
+            if form.is_valid():
+                form.save()
+                return redirect('/posts/')
+            else:
+                return HttpResponse(f"<p>{form.errors}</p>")
+        else:
+            form = TicketForm(instance=ticket)
+            return render(request, 'ticket/create_ticket.html', {'form': form})
     else:
-        ticket = Ticket.objects.get(id=id)
-        form = TicketForm(instance=ticket)
-        return render(request, 'ticket/create_ticket.html', {'form': form})
+        return redirect('/auth/')
+
