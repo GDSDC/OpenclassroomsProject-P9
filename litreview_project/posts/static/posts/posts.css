@@ -1,3 +1,9 @@
-.title{
+.title {
     text-align: center;
+}
+
+.ticket__image {
+    /* Borders for debugging */
+    border: 2px solid red;
+    max-width: 60%;
 }

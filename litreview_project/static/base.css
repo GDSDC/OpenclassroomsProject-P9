@@ -16,15 +16,12 @@ nav {
 main {
     /* Borders for debugging */
     border: 2px solid mediumblue;
-    height: 95%;
-    min-height: 380px;
 }
 
 .row__display {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 100%;
     justify-content: center;
 }
 
