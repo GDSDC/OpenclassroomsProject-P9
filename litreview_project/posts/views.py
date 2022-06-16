@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 from ticket.models import Ticket
-from django.http import HttpResponse
+from django.views import View
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
-
-def posts_page(request):
+class posts_page(View):
     """View to see and change your own publications (ticket and/or reviews)"""
-    actual_user = request.user
-    if actual_user is not None and actual_user.is_active:
+
+    @method_decorator(login_required(login_url='/auth/'))
+    def get(self, request):
+        actual_user = request.user
         tickets = Ticket.objects.filter(user=actual_user)
         return render(request, 'posts/posts.html', {'tickets': tickets})
-    else:
-        return redirect('/auth/')

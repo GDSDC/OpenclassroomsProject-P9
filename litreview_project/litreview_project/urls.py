@@ -24,21 +24,18 @@ from posts import views as posts_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # PAGES
-    path('auth/', auth_views.sign_in_form),
-    path('auth/sign_up/', auth_views.sign_up_form, name='sign_up'),
-    path('ticket/create/', ticket_views.create_ticket, name='create_ticket'),
-    path('posts/', posts_views.posts_page, name='posts'),
+    path('auth/', auth_views.sign_in_form.as_view()),
+    path('auth/sign_up/', auth_views.sign_up_form.as_view(), name='sign_up'),
+    path('ticket/create/', ticket_views.create_ticket.as_view(), name='create_ticket'),
+    path('posts/', posts_views.posts_page.as_view(), name='posts'),
 
     # END POINTS
-    path('', auth_views.homepage),
+    path('', auth_views.homepage.as_view(), name='home'),
     path('auth/logout/', include("django.contrib.auth.urls")),
-    path('ticket/<int:id>/delete/', ticket_views.delete_ticket, name='delete_ticket'),
-    path('ticket/<int:id>/edit/', ticket_views.edit_ticket, name='edit_ticket'),
-
-    # TESTING
-    path('user_infos/', ticket_views.show_user_infos)
+    path('ticket/<int:id>/delete/', ticket_views.delete_ticket.as_view(), name='delete_ticket'),
+    path('ticket/<int:id>/edit/', ticket_views.edit_ticket.as_view(), name='edit_ticket'),
 
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

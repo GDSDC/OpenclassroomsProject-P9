@@ -1,19 +1,28 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.views import View
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login
 from authentication.forms import CustomUserCreationForm, CustomAuthenticationForm
 
-def homepage(request):
-    """Redirection when no specific route is given '/'"""
-    actual_user = request.user = request.user
-    if actual_user is not None and actual_user.is_active:
-        return redirect('/posts/')
-    else:
-        return redirect('/auth/')
 
-def sign_in_form(request):
+class homepage(View):
+    """Redirection when no specific route is given '/'"""
+
+    @method_decorator(login_required(login_url='/auth/'))
+    def get(self, request):
+        return redirect('/posts/')
+
+
+class sign_in_form(View):
     """View for home page / authentication"""
-    if request.method == 'POST':
+
+    def get(self, request):
+        form = CustomAuthenticationForm(request.POST)
+        return render(request, 'authentication/auth_homepage.html', {'form': form})
+
+    def post(self, request):
         username = request.POST.get('username', False)
         password = request.POST.get('password', False)
         user = authenticate(username=username, password=password)
@@ -23,14 +32,15 @@ def sign_in_form(request):
         else:
             return HttpResponse('<h1>sign in form not valid</h1>')
 
-    else:
-        form = CustomAuthenticationForm(request.POST)
-        return render(request, 'authentication/auth_homepage.html', {'form': form})
 
-
-def sign_up_form(request):
+class sign_up_form(View):
     """View for signing up with filling a form"""
-    if request.method == 'POST':
+
+    def get(self,request):
+        form = CustomUserCreationForm()
+        return render(request, 'authentication/sign_up_form.html', {'form': form})
+
+    def post(self, request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
@@ -48,7 +58,3 @@ def sign_up_form(request):
 
         else:
             return HttpResponse('<h1>sign up form not valid</h1>')
-
-    else:
-        form = CustomUserCreationForm()
-        return render(request, 'authentication/sign_up_form.html', {'form': form})
