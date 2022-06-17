@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from authentication import views as auth_views
 from ticket import views as ticket_views
+from review import views as review_views
 from posts import views as posts_views
 
 urlpatterns = [
@@ -27,6 +28,7 @@ urlpatterns = [
     path('auth/', auth_views.sign_in_form.as_view()),
     path('auth/sign_up/', auth_views.sign_up_form.as_view(), name='sign_up'),
     path('ticket/create/', ticket_views.create_ticket.as_view(), name='create_ticket'),
+    path('review/create/', review_views.create_review_ticket.as_view(), name='create_review_ticket'),
     path('posts/', posts_views.posts_page.as_view(), name='posts'),
 
     # END POINTS
