@@ -46,6 +46,6 @@ class create_review_ticket(View):
                                   'ticket': ticket})
         if review_form.is_valid():
             review = review_form.save()
-            return HttpResponse(f"<p>Critique '{review}' bien enregistrée !</p>")
+            return redirect('/posts/')
         else:
             return HttpResponse(f"<p>review_form errors : {review_form.errors}</p>")
