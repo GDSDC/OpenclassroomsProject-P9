@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'authentication',
     'ticket',
+    'review',
     'feed',
     'posts',
 ]
