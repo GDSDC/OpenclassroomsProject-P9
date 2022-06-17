@@ -11,22 +11,55 @@
 <h1 class="title">Vos posts</h1>
 <div class="row__display">
     <div class="vertical__dispay">
-        {% for ticket in tickets %}
+        {% for post in posts|dictsortreversed:"object.time_created" %}
+        {% if post.model == "Ticket" %}
         <div class="vertical__dispay">
             <p>Vous avez publié un ticket</p>
-            <p>Titre : {{ ticket.title }}</p>
-            <p>{{ ticket.time_created |date:'H:i, d F Y'}}</p>
-            <p>Description : {{ ticket.description }}</p>
-            {% if ticket.image %}
-            <img src="{{ ticket.image.url }}" class="ticket__image">
+            <p>Titre : {{ post.object.title }}</p>
+            <p>{{ post.object.time_created | date:'H:i, d F Y' }}</p>
+            <p>Description : {{ post.object.description }}</p>
+            {% if post.object.image %}
+            <img src="{{ post.object.image.url }}" class="ticket__image">
             {% endif %}
-            <a href="{% url "edit_ticket" ticket.id %}">
+            <a href="{% url "edit_ticket" post.object.id %}">
+            <button>Modifier</button>
+            </a>
+            <a href="{% url "delete_ticket" post.object.id %}">
+            <button>Supprimer</button>
+            </a>
+        </div>
+        {% elif post.model == "Review" %}
+        <div class="vertical__dispay">
+            <p>Vous avez publié une critique</p>
+            <p>Titre : {{ post.object.headline }}</p>
+            <p>{{ post.object.time_created | date:'H:i, d F Y' }}</p>
+            <p>Note : {% if post.object.rating == 0 %}
+                {% elif post.object.rating == 1 %} *
+                {% elif post.object.rating == 2 %} * *
+                {% elif post.object.rating == 3 %} * * *
+                {% elif post.object.rating == 4 %} * * * *
+                {% elif post.object.rating == 5 %} * * * * *
+                {% endif %}</p>
+            <p>Commentaire : {{ post.object.body }}</p>
+            <div class="ticket__in__review">
+                {% if post.object.ticket.user == post.object.user %}
+                <p>Ticket : Vous</p>
+                {% else %}
+                <p>Ticket : {{ post.object.ticket.user }}</p>
+                {% endif %}
+                <p>Titre : {{ post.object.ticket.title }}</p>
+                {% if post.object.ticket.image %}
+                <img src="{{ post.object.ticket.image.url }}" class="ticket__image">
+                {% endif %}
+            </div>
+            <a href="">
                 <button>Modifier</button>
             </a>
-            <a href="{% url "delete_ticket" ticket.id %}">
+            <a href="">
                 <button>Supprimer</button>
             </a>
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </div>
