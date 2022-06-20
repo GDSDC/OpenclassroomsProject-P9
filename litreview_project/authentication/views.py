@@ -12,7 +12,7 @@ class homepage(View):
 
     @method_decorator(login_required(login_url='/auth/'))
     def get(self, request):
-        return redirect('/posts/')
+        return redirect('/feed/')
 
 
 class sign_in_form(View):
@@ -28,7 +28,7 @@ class sign_in_form(View):
         user = authenticate(username=username, password=password)
         if user is not None and user.is_active:
             login(request, user)
-            return redirect('/ticket/create/')
+            return redirect('/feed/')
         else:
             return HttpResponse('<h1>sign in form not valid</h1>')
 
@@ -53,7 +53,7 @@ class sign_up_form(View):
             user = authenticate(username=username, password=raw_password)
             if user is not None and user.is_active:
                 login(request, user)
-                return redirect('/ticket/create/')
+                return redirect('/feed/')
             # TODO : uncomment REAL LIFE ACTION and comment FOR DEBUGGING ONLY
 
         else:

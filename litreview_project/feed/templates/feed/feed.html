@@ -1,0 +1,39 @@
+{% extends 'base_logged_in.html' %}
+
+<!--Additional style for authentication-->
+{% load static %}
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'feed/feed.css' %}"/>
+{% endblock %}
+
+<!--Content-->
+{% block content %}
+<div class="row__display">
+    <a href="{% url "create_ticket" %}">
+    <button>Demander une critique</button>
+    </a>
+    <a href="{% url "create_review_ticket" %}">
+    <button>Créer une critique</button>
+    </a>
+</div>
+<div class="row__display">
+    <div class="vertical__dispay">
+        {% for post in posts|dictsortreversed:"time_created" %}
+        <div class="vertical__dispay">
+            {% if post.content_type == "TICKET" %}
+            {% if post.user == user %}
+            <p>Vous avez demandé un critique</p>
+            {% else %}
+            <p>{{ post.user.username }} a demandé un critique</p>
+            {% endif %}
+            <p>{{ post.time_created | date:'H:i, d F Y' }}</p>
+            <p>Titre : {{ post.title }}</p>
+            <!--            TODO : conditional display if ticket in tickets_reviewed list-->
+            {% elif post.content_type == "REVIEW" %}
+            <!--            TODO : display reviews-->
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
