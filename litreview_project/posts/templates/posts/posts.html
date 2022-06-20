@@ -55,8 +55,8 @@
             <a href="">
                 <button>Modifier</button>
             </a>
-            <a href="">
-                <button>Supprimer</button>
+            <a href="{% url "delete_review" post.object.id %}">
+            <button>Supprimer</button>
             </a>
         </div>
         {% endif %}

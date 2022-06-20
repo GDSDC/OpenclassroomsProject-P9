@@ -80,3 +80,13 @@ class create_review_from_ticket(View):
             return redirect('/posts/')
         else:
             return HttpResponse(f"<p>review_form errors : {review_form.errors}</p>")
+
+
+class delete_review(View):
+    """Link to delete a review"""
+
+    @method_decorator(login_required(login_url='/auth/'))
+    def get(self, request, id):
+        review = Review.objects.get(id=id)
+        review.delete()
+        return redirect('/posts/')
