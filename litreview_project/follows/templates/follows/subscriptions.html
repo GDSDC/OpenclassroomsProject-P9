@@ -41,6 +41,20 @@
 
         </table>
     </div>
+    <div class="vertical__dispay">
+        <p>Abonnés</p>
+        {% if not subscribers %}
+        <p class="error__message">Vous n'avez aucun abonné pour le moment.</p>
+        {% else %}
+        <table class="subscriptions__table">
+            {% for subscriber in subscribers %}
+            <tr>
+                <td>{{ subscriber.username }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
 
 </div>
 {% endblock %}

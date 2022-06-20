@@ -16,7 +16,7 @@ class subscriptions(View):
         user_follows_form = UserFollowForm()
         actual_user = User.objects.get(username=request.user.username)
         user_subscriptions = list(UserFollows.objects.filter(user=actual_user))
-        subscribers = ''
+        subscribers = [user_follow.user for user_follow in UserFollows.objects.filter(followed_user=actual_user)]
 
         return render(request, 'follows/subscriptions.html', {'user_follows_form': user_follows_form,
                                                               'subscriptions': user_subscriptions,
