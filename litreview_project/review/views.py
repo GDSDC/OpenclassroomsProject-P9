@@ -50,6 +50,7 @@ class create_review_ticket(View):
         else:
             return HttpResponse(f"<p>review_form errors : {review_form.errors}</p>")
 
+
 class create_review_from_ticket(View):
     """View to create a review in response to a ticket (no need to create a ticket)"""
 
@@ -90,3 +91,35 @@ class delete_review(View):
         review = Review.objects.get(id=id)
         review.delete()
         return redirect('/posts/')
+
+
+class edit_review(View):
+    """View to edit a review"""
+
+    @method_decorator(login_required(login_url='/auth/'))
+    def get(self, request, id):
+        review = Review.objects.get(id=id)
+        review_form = ReviewForm(instance=review)
+        ticket = Ticket.objects.get(id=review.ticket.id)
+        actual_user = request.user
+        return render(request, 'review/create_review_from_ticket.html',
+                      {'review_form': review_form, 'ticket': ticket, 'review_user': actual_user})
+
+    @method_decorator(login_required(login_url='/auth/'))
+    def post(self, request, id):
+        review = Review.objects.get(id=id)
+        ticket = Ticket.objects.get(id=review.ticket.id)
+        actual_user = request.user
+        headline = request.POST.get('headline', False)
+        body = request.POST.get('body', False)
+        rating = request.POST.get('rating', False)
+        review_form = ReviewForm({'headline': headline,
+                                  'body': body,
+                                  'rating': rating,
+                                  'user': actual_user,
+                                  'ticket': ticket}, instance=review)
+        if review_form.is_valid():
+            review_form.save()
+            return redirect('/posts/')
+        else:
+            return HttpResponse(f"<p>{form.errors}</p>")

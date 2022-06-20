@@ -52,8 +52,8 @@
                 <img src="{{ post.object.ticket.image.url }}" class="ticket__image">
                 {% endif %}
             </div>
-            <a href="">
-                <button>Modifier</button>
+            <a href="{% url "edit_review" post.object.id %}">
+            <button>Modifier</button>
             </a>
             <a href="{% url "delete_review" post.object.id %}">
             <button>Supprimer</button>

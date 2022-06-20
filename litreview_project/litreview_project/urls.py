@@ -38,6 +38,7 @@ urlpatterns = [
     path('ticket/<int:id>/edit/', ticket_views.edit_ticket.as_view(), name='edit_ticket'),
     path('review/<int:id>/create/', review_views.create_review_from_ticket.as_view(), name='create_review_from_ticket'),
     path('review/<int:id>/delete/', review_views.delete_review.as_view(), name='delete_review'),
+    path('review/<int:id>/edit/', review_views.edit_review.as_view(), name='edit_review'),
 
 ]
 
