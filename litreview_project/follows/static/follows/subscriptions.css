@@ -5,3 +5,9 @@
 .validation__message {
     color: green;
 }
+
+.subscriptions__table, th ,td {
+    border-collapse: collapse;
+    border: 1px solid;
+    width: 50%;
+}

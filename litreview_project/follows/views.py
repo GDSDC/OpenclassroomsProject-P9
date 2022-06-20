@@ -12,9 +12,17 @@ class subscriptions(View):
     """View for subscriptions page"""
 
     @method_decorator(login_required(login_url='/auth/'))
-    def get(self, request):
+    def get(self, request, error_message='', validation_message=''):
         user_follows_form = UserFollowForm()
-        return render(request, 'follows/subscriptions.html', {'user_follows_form': user_follows_form})
+        actual_user = User.objects.get(username=request.user.username)
+        user_subscriptions = list(UserFollows.objects.filter(user=actual_user))
+        subscribers = ''
+
+        return render(request, 'follows/subscriptions.html', {'user_follows_form': user_follows_form,
+                                                              'subscriptions': user_subscriptions,
+                                                              'subscribers': subscribers,
+                                                              'error_message': error_message,
+                                                              'validation_message': validation_message})
 
     @method_decorator(login_required(login_url='/auth/'))
     def post(self, request):
@@ -38,8 +46,19 @@ class subscriptions(View):
             else:
                 error_message = f"Vous suivez déjà l'utilisateur {followed_user_username} !"
 
-        user_follows_form = UserFollowForm()
-        return render(request, 'follows/subscriptions.html',
-                      {'user_follows_form': user_follows_form,
-                       'error_message': error_message,
-                       'validation_message': validation_message})
+        return self.get(request, error_message=error_message, validation_message=validation_message)
+
+
+
+class delete_subscription(View):
+    """Link to delete subscription"""
+
+    @method_decorator(login_required(login_url='/auth/'))
+    def get(self, request, followed_user_id):
+        actual_user = request.user
+        followed_user = User.objects.get(id=followed_user_id)
+        subscription_to_delete = UserFollows.objects.get(user=actual_user,
+                                                         followed_user=followed_user)
+        subscription_to_delete.delete()
+
+        return redirect('/subscriptions/')

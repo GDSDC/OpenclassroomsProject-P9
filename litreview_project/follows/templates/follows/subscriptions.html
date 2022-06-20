@@ -22,4 +22,22 @@
 {% if validation_message %}
 <p class="validation__message">{{ validation_message }}</p>
 {% endif %}
+<div class="vertical__dispay">
+    <p>Abonnements</p>
+    {% if not subscriptions %}
+    <p class="error__message">Vous n'êtes abonnées à aucun utilisateur.</p>
+    {% else %}
+    <table class="subscriptions__table">
+        {% for subscription in subscriptions %}
+        <tr>
+            <td>{{ subscription.followed_user.username }}</td>
+            <td><a href="{% url "delete_subscription" subscription.followed_user.id %}">Désabonner</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <table>
+
+    </table>
+</div>
 {% endblock %}
