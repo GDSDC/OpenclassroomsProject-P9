@@ -1,0 +1,41 @@
+{% extends 'base_logged_in.html' %}
+
+<!--Additional style for authentication-->
+{% load static %}
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'review/review.css' %}"/>
+{% endblock %}
+
+<!--Content-->
+{% block content %}
+<h1 class="title">Créer une critique</h1>
+<div class="vertical__dispay">
+    <p>Vous êtes en train de poster en réponse à</p>
+    <div class="vertical__dispay">
+        <p>{{ ticket.time_created | date:'H:i, d F Y' }}</p>
+        {% if ticket.user == review_user %}
+        <p>Vous avez demandé une critique</p>
+        {% else %}
+        <p>{{ ticket.user }} a demandé une critique</p>
+        {% endif %}
+        <p>Titre : {{ticket.title}}</p>
+        <p>Description : {{ticket.description}}</p>
+        {% if ticket.image %}
+        <img src="{{ ticket.image.url }}" class="ticket__image">
+        {% endif %}
+    </div>
+</div>
+<form method="POST" class="vertical__dispay" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="vertical__dispay">
+        <p>Critique</p>
+        <p>Titre</p>
+        {{review_form.headline}}
+        <p>Note</p>
+        {{review_form.rating}}
+        <p>Commentaire</p>
+        {{review_form.body}}
+        <button type="submit">Envoyer</button>
+    </div>
+</form>
+{% endblock %}

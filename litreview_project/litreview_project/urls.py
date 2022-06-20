@@ -36,6 +36,7 @@ urlpatterns = [
     path('auth/logout/', include("django.contrib.auth.urls")),
     path('ticket/<int:id>/delete/', ticket_views.delete_ticket.as_view(), name='delete_ticket'),
     path('ticket/<int:id>/edit/', ticket_views.edit_ticket.as_view(), name='edit_ticket'),
+    path('review/<int:id>/create/', review_views.create_review_from_ticket.as_view(), name='create_review_from_ticket')
 
 ]
 

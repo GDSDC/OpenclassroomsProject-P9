@@ -31,8 +31,8 @@
         {% elif post.model == "Review" %}
         <div class="vertical__dispay">
             <p>Vous avez publié une critique</p>
-            <p>Titre : {{ post.object.headline }}</p>
             <p>{{ post.object.time_created | date:'H:i, d F Y' }}</p>
+            <p>Titre : {{ post.object.headline }}</p>
             <p>Note : {% if post.object.rating == 0 %}
                 {% elif post.object.rating == 1 %} *
                 {% elif post.object.rating == 2 %} * *
