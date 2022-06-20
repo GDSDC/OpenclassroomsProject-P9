@@ -8,12 +8,18 @@
 
 <!--Content-->
 {% block content %}
-<h1 class="title">Créer une critique</h1>
+<h1 class="title">
+    {% if edit %}
+    Modifier votre critique
+    {% else %}
+    Créer une critique
+    {% endif %}
+</h1>
 <div class="vertical__dispay">
     <p>Vous êtes en train de poster en réponse à</p>
     <div class="vertical__dispay">
         <p>{{ ticket.time_created | date:'H:i, d F Y' }}</p>
-        {% if ticket.user == review_user %}
+        {% if ticket.user == user %}
         <p>Vous avez demandé une critique</p>
         {% else %}
         <p>{{ ticket.user }} a demandé une critique</p>

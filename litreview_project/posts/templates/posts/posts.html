@@ -42,7 +42,7 @@
                 {% endif %}</p>
             <p>Commentaire : {{ post.object.body }}</p>
             <div class="ticket__in__review">
-                {% if post.object.ticket.user == post.object.user %}
+                {% if post.object.ticket.user == user %}
                 <p>Ticket : Vous</p>
                 {% else %}
                 <p>Ticket : {{ post.object.ticket.user }}</p>

@@ -50,7 +50,7 @@ class edit_ticket(View):
     def get(self, request, id):
         ticket = Ticket.objects.get(id=id)
         form = TicketForm(instance=ticket)
-        return render(request, 'ticket/create_ticket.html', {'form': form})
+        return render(request, 'ticket/create_ticket.html', {'form': form, 'edit': True})
 
     @method_decorator(login_required(login_url='/auth/'))
     def post(self, request, id):

@@ -23,7 +23,7 @@ class create_review_ticket(View):
     def post(self, request):
         actual_user = request.user
         # ticket
-        title = request.POST.get('title', 'test')
+        title = request.POST.get('title', False)
         description = request.POST.get('description', False)
         image = request.POST.get('image', False)
         ticket_form = TicketForm({'title': title,
@@ -58,9 +58,8 @@ class create_review_from_ticket(View):
     def get(self, request, id):
         review_form = ReviewForm()
         ticket = Ticket.objects.get(id=id)
-        actual_user = request.user
         return render(request, 'review/create_review_from_ticket.html',
-                      {'review_form': review_form, 'ticket': ticket, 'review_user': actual_user})
+                      {'review_form': review_form, 'ticket': ticket})
 
     @method_decorator(login_required(login_url='/auth/'))
     def post(self, request, id):
@@ -101,9 +100,8 @@ class edit_review(View):
         review = Review.objects.get(id=id)
         review_form = ReviewForm(instance=review)
         ticket = Ticket.objects.get(id=review.ticket.id)
-        actual_user = request.user
         return render(request, 'review/create_review_from_ticket.html',
-                      {'review_form': review_form, 'ticket': ticket, 'review_user': actual_user})
+                      {'review_form': review_form, 'ticket': ticket, 'edit': True})
 
     @method_decorator(login_required(login_url='/auth/'))
     def post(self, request, id):
