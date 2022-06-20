@@ -19,6 +19,8 @@ main {
 }
 
 .row__display {
+    /* Borders for debugging */
+    border: 2px solid lightsalmon;
     display: flex;
     flex-direction: row;
     align-items: center;
