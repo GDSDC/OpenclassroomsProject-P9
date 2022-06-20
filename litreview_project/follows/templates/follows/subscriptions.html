@@ -1,0 +1,25 @@
+{% extends 'base_logged_in.html' %}
+
+<!--Additional style for authentication-->
+{% load static %}
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'follows/subscriptions.css' %}"/>
+{% endblock %}
+
+<!--Content-->
+{% block content %}
+<div class="vertical__dispay">
+    <p>Suivre d'autres utilisateurs</p>
+    <form method="POST" class="vertical__dispay" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_follows_form.followed_user }}
+        <button type="submit">Envoyer</button>
+    </form>
+</div>
+{% if error_message %}
+<p class="error__message">{{ error_message }}</p>
+{% endif %}
+{% if validation_message %}
+<p class="validation__message">{{ validation_message }}</p>
+{% endif %}
+{% endblock %}

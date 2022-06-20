@@ -21,6 +21,7 @@ from authentication import views as auth_views
 from ticket import views as ticket_views
 from review import views as review_views
 from posts import views as posts_views
+from follows import views as subscriptions_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +31,7 @@ urlpatterns = [
     path('ticket/create/', ticket_views.create_ticket.as_view(), name='create_ticket'),
     path('review/create/', review_views.create_review_ticket.as_view(), name='create_review_ticket'),
     path('posts/', posts_views.posts_page.as_view(), name='posts'),
+    path('subscriptions/', subscriptions_views.subscriptions.as_view(), name='subscriptions'),
 
     # END POINTS
     path('', auth_views.homepage.as_view(), name='home'),
