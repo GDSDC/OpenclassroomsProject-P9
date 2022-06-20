@@ -55,16 +55,16 @@ class create_review_from_ticket(View):
     """View to create a review in response to a ticket (no need to create a ticket)"""
 
     @method_decorator(login_required(login_url='/auth/'))
-    def get(self, request, id):
+    def get(self, request, ticket_id):
         review_form = ReviewForm()
-        ticket = Ticket.objects.get(id=id)
+        ticket = Ticket.objects.get(id=ticket_id)
         return render(request, 'review/create_review_from_ticket.html',
                       {'review_form': review_form, 'ticket': ticket})
 
     @method_decorator(login_required(login_url='/auth/'))
-    def post(self, request, id):
+    def post(self, request, ticket_id):
         # ticket
-        ticket = Ticket.objects.get(id=id)
+        ticket = Ticket.objects.get(id=ticket_id)
         # review
         actual_user = request.user
         headline = request.POST.get('headline', False)
