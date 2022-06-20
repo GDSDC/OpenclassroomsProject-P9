@@ -1,12 +1,14 @@
 .error__message {
     color: red;
+    text-align: center;
 }
 
 .validation__message {
     color: green;
+    text-align: center;
 }
 
-.subscriptions__table, th ,td {
+.subscriptions__table, th, td {
     border-collapse: collapse;
     border: 1px solid;
     width: 50%;
