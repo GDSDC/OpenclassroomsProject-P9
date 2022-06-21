@@ -25,10 +25,9 @@ class feed_page(View):
         own_reviews = Review.objects.filter(user=actual_user)
         own_reviews = own_reviews.annotate(content_type=Value('REVIEW', CharField()))
         # reviews in response to actual_user tickets
-        reviews_actual_user_tickets = Review.objects.filter(ticket=Ticket.objects.filter(user=actual_user))
+        reviews_actual_user_tickets = Review.objects.filter(ticket__in=Ticket.objects.filter(user=actual_user)).exclude(user=actual_user)
         reviews_actual_user_tickets = reviews_actual_user_tickets.annotate(content_type=Value('REVIEW', CharField()))
 
-        posts = chain(list(tickets), list(own_reviews), list(reviews_actual_user_tickets))
-        # TODO : make it works / warning on "The QuerySet value for an exact lookup must be limited to one result using slicing."
+        posts = chain(tickets,own_reviews,reviews_actual_user_tickets)
 
         return render(request, 'feed/feed.html', context={'posts': posts, 'tickets_reviewed': tickets_reviewed})

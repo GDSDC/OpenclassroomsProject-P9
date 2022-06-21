@@ -9,18 +9,26 @@
 <!--Content-->
 {% block content %}
 <div class="row__display">
+    <!--@formatter:off-->
     <a href="{% url "create_ticket" %}">
+    <!--@formatter:on-->
     <button>Demander une critique</button>
     </a>
+    <!--@formatter:off-->
     <a href="{% url "create_review_ticket" %}">
+    <!--@formatter:on-->
     <button>Créer une critique</button>
     </a>
 </div>
 <div class="row__display">
     <div class="vertical__dispay">
         {% for post in posts|dictsortreversed:"time_created" %}
+        {% if post.content_type == "TICKET" %}
+        <!--        TICKET DISPLAY-->
         <div class="vertical__dispay">
-            {% if post.content_type == "TICKET" %}
+
+            {% if post not in tickets_reviewed %}
+            <!--        ticket not reviewed-->
             {% if post.user == user %}
             <p>Vous avez demandé un critique</p>
             {% else %}
@@ -28,11 +36,34 @@
             {% endif %}
             <p>{{ post.time_created | date:'H:i, d F Y' }}</p>
             <p>Titre : {{ post.title }}</p>
-            <!--            TODO : conditional display if ticket in tickets_reviewed list-->
-            {% elif post.content_type == "REVIEW" %}
-            <!--            TODO : display reviews-->
+            {% if post.image %}
+            <img src="{{ post.image.url }}" class="ticket__image">
+            {% endif %}
+            <!--@formatter:off-->
+            <a href="{% url "create_review_from_ticket" post.id%}">
+                <!--@formatter:on-->
+            <button>Créer une critique</button>
+            </a>
+            {% else %}
+            <!--        ticket already reviewed-->
+            {% if post.user == user %}
+            <p>Vous avez demandé un critique</p>
+            {% else %}
+            <p>{{ post.user.username }} a demandé un critique</p>
+            {% endif %}
+            <p>{{ post.time_created | date:'H:i, d F Y' }}</p>
+            <p>Titre : {{ post.title }}</p>
+            <p>Description : {{ post.description }}</p>
+            {% if post.image %}
+            <img src="{{ post.image.url }}" class="ticket__image">
+            {% endif %}
             {% endif %}
         </div>
+
+        {% elif post.content_type == "REVIEW" %}
+        <!--        REVIEW DISPLAY-->
+<!--        TODO : review DISPLAY-->
+        {% endif %}
         {% endfor %}
     </div>
 </div>
