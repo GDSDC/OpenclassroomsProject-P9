@@ -32,7 +32,11 @@
             {% for subscription in subscriptions %}
             <tr>
                 <td>{{ subscription.followed_user.username }}</td>
-                <td><a href="{% url "delete_subscription" subscription.followed_user.id %}">Désabonner</a></td>
+                <td>
+                    <!--@formatter:off-->
+                    <a href="{% url "delete_subscription" subscription.followed_user.id %}">Désabonner</a>
+                    <!--@formatter:on-->
+                </td>
             </tr>
             {% endfor %}
         </table>
