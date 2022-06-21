@@ -16,8 +16,8 @@ class create_review_ticket(View):
     def get(self, request):
         review_form = ReviewForm()
         ticket_form = TicketForm()
-        return render(request, 'review/create_review_ticket.html',
-                      {'review_form': review_form, 'ticket_form': ticket_form})
+        return render(request, 'review/create_review_ticket.html', context={'review_form': review_form,
+                                                                            'ticket_form': ticket_form})
 
     @method_decorator(login_required(login_url='/auth/'))
     def post(self, request):
@@ -58,8 +58,8 @@ class create_review_from_ticket(View):
     def get(self, request, ticket_id):
         review_form = ReviewForm()
         ticket = Ticket.objects.get(id=ticket_id)
-        return render(request, 'review/create_review_from_ticket.html',
-                      {'review_form': review_form, 'ticket': ticket})
+        return render(request, 'review/create_review_from_ticket.html', context={'review_form': review_form,
+                                                                                 'ticket': ticket})
 
     @method_decorator(login_required(login_url='/auth/'))
     def post(self, request, ticket_id):
@@ -100,8 +100,9 @@ class edit_review(View):
         review = Review.objects.get(id=id)
         review_form = ReviewForm(instance=review)
         ticket = Ticket.objects.get(id=review.ticket.id)
-        return render(request, 'review/create_review_from_ticket.html',
-                      {'review_form': review_form, 'ticket': ticket, 'edit': True})
+        return render(request, 'review/create_review_from_ticket.html', context={'review_form': review_form,
+                                                                                 'ticket': ticket,
+                                                                                 'edit': True})
 
     @method_decorator(login_required(login_url='/auth/'))
     def post(self, request, id):

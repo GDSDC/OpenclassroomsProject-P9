@@ -20,7 +20,7 @@ class sign_in_form(View):
 
     def get(self, request):
         form = CustomAuthenticationForm(request.POST)
-        return render(request, 'authentication/auth_homepage.html', {'form': form})
+        return render(request, 'authentication/auth_homepage.html', context={'form': form})
 
     def post(self, request):
         username = request.POST.get('username', False)
@@ -36,9 +36,9 @@ class sign_in_form(View):
 class sign_up_form(View):
     """View for signing up with filling a form"""
 
-    def get(self,request):
+    def get(self, request):
         form = CustomUserCreationForm()
-        return render(request, 'authentication/sign_up_form.html', {'form': form})
+        return render(request, 'authentication/sign_up_form.html', context={'form': form})
 
     def post(self, request):
         form = CustomUserCreationForm(request.POST)

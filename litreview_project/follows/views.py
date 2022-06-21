@@ -18,11 +18,11 @@ class subscriptions(View):
         user_subscriptions = list(UserFollows.objects.filter(user=actual_user))
         subscribers = [user_follow.user for user_follow in UserFollows.objects.filter(followed_user=actual_user)]
 
-        return render(request, 'follows/subscriptions.html', {'user_follows_form': user_follows_form,
-                                                              'subscriptions': user_subscriptions,
-                                                              'subscribers': subscribers,
-                                                              'error_message': error_message,
-                                                              'validation_message': validation_message})
+        return render(request, 'follows/subscriptions.html', context={'user_follows_form': user_follows_form,
+                                                                      'subscriptions': user_subscriptions,
+                                                                      'subscribers': subscribers,
+                                                                      'error_message': error_message,
+                                                                      'validation_message': validation_message})
 
     @method_decorator(login_required(login_url='/auth/'))
     def post(self, request):
@@ -47,7 +47,6 @@ class subscriptions(View):
                 error_message = f"Vous suivez déjà l'utilisateur {followed_user_username} !"
 
         return self.get(request, error_message=error_message, validation_message=validation_message)
-
 
 
 class delete_subscription(View):

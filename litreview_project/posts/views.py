@@ -23,4 +23,6 @@ class posts_page(View):
 
         posts = chain(tickets, reviews)
 
-        return render(request, 'posts/posts.html', {'posts': posts, 'rating_range': RATING_RANGE,'rating_char' : RATING_CHAR})
+        return render(request, 'posts/posts.html', context={'posts': posts,
+                                                            'rating_range': RATING_RANGE,
+                                                            'rating_char': RATING_CHAR})
