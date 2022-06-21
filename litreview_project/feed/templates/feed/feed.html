@@ -24,11 +24,10 @@
     <div class="vertical__dispay">
         {% for post in posts|dictsortreversed:"time_created" %}
         {% if post.content_type == "TICKET" %}
-        <!--        TICKET DISPLAY-->
+        <!-- //////// TICKET DISPLAY //////// -->
         <div class="vertical__dispay">
-
             {% if post not in tickets_reviewed %}
-            <!--        ticket not reviewed-->
+            <!-- ----- ticket not reviewed ----- -->
             {% if post.user == user %}
             <p>Vous avez demandé un critique</p>
             {% else %}
@@ -45,7 +44,7 @@
             <button>Créer une critique</button>
             </a>
             {% else %}
-            <!--        ticket already reviewed-->
+            <!-- ---- ticket already reviewed ---- -->
             {% if post.user == user %}
             <p>Vous avez demandé un critique</p>
             {% else %}
@@ -61,8 +60,35 @@
         </div>
 
         {% elif post.content_type == "REVIEW" %}
-        <!--        REVIEW DISPLAY-->
-<!--        TODO : review DISPLAY-->
+        <!-- //////// REVIEW DISPLAY //////// -->
+        <div class="vertical__dispay">
+            {% if post.user == user %}
+            <p>Vous avez publié une critique</p>
+            {% else %}
+            <p>{{ post.user.username }} a publié un critique</p>
+            {% endif %}
+            <p>{{ post.time_created | date:'H:i, d F Y' }}</p>
+            <p>Titre : {{ post.headline }}</p>
+            <p>Note : {% if post.rating == 0 %}
+                {% elif post.rating == 1 %} *
+                {% elif post.rating == 2 %} * *
+                {% elif post.rating == 3 %} * * *
+                {% elif post.rating == 4 %} * * * *
+                {% elif post.rating == 5 %} * * * * *
+                {% endif %}</p>
+            <p>Commentaire : {{ post.body }}</p>
+            <div class="ticket__in__review">
+                {% if post.ticket.user == user %}
+                <p>Ticket : Vous</p>
+                {% else %}
+                <p>Ticket : {{ post.ticket.user }}</p>
+                {% endif %}
+                <p>Titre : {{ post.ticket.title }}</p>
+                {% if post.ticket.image %}
+                <img src="{{ post.ticket.image.url }}" class="ticket__image">
+                {% endif %}
+            </div>
+        </div>
         {% endif %}
         {% endfor %}
     </div>
