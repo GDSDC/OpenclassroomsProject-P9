@@ -69,13 +69,12 @@
             {% endif %}
             <p>{{ post.time_created | date:'H:i, d F Y' }}</p>
             <p>Titre : {{ post.headline }}</p>
-            <p>Note : {% if post.rating == 0 %}
-                {% elif post.rating == 1 %} *
-                {% elif post.rating == 2 %} * *
-                {% elif post.rating == 3 %} * * *
-                {% elif post.rating == 4 %} * * * *
-                {% elif post.rating == 5 %} * * * * *
-                {% endif %}</p>
+            <p>Note : {% for _ in rating_range %}
+                {% if forloop.counter0 >= post.rating %}
+                {% else %}
+                {{ rating_char }}
+                {% endif %}
+                {% endfor %}</p>
             <p>Commentaire : {{ post.body }}</p>
             <div class="ticket__in__review">
                 {% if post.ticket.user == user %}

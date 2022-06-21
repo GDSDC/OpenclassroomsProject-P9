@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from ticket.models import Ticket
-from review.models import Review
+from review.models import Review, RATING_CHAR, RATING_RANGE
 from follows.models import UserFollows
 from django.views import View
 from django.contrib.auth.decorators import login_required
@@ -35,4 +35,8 @@ class feed_page(View):
 
         posts = chain(tickets, own_reviews, reviews_actual_user_tickets, subscriptions_reviews)
 
-        return render(request, 'feed/feed.html', context={'posts': posts, 'tickets_reviewed': tickets_reviewed})
+        return render(request, 'feed/feed.html',
+                      context={'posts': posts,
+                               'tickets_reviewed': tickets_reviewed,
+                               'rating_range': RATING_RANGE,
+                               'rating_char': RATING_CHAR})

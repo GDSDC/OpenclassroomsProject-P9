@@ -4,6 +4,9 @@ from django.db import models
 from ticket.models import Ticket
 
 
+RATING_CHAR = '*'
+RATING_RANGE = range(5)
+
 class Review(models.Model):
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)
     rating = models.PositiveSmallIntegerField(
