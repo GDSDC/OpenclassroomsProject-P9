@@ -16,10 +16,10 @@
             {{ user_follows_form.followed_user }}
             <button type="submit">Envoyer</button>
         </form>
-        {% if error_message %}
+        {% if error_message is not None %}
         <p class="error__message">{{ error_message }}</p>
         {% endif %}
-        {% if validation_message %}
+        {% if validation_message is not None %}
         <p class="validation__message">{{ validation_message }}</p>
         {% endif %}
     </div>
