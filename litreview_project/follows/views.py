@@ -3,16 +3,17 @@ from django.http import HttpResponse
 from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.contrib.auth.models import User
+from urllib.parse import urlencode
 from follows.models import UserFollows
 from follows.forms import UserFollowForm
-from django.contrib.auth.models import User
 
 _MESSAGES = {
     'unknown_user': "Utilisateur inconnu !",
     'do_not_follow_yourself': "Veuillez renseigner un nom d'utilisateur autre que le votre.",
     'subscription_succes': "Vous suivez désormais l'utilisateur {username} !",
     'already_following': "Vous suivez déjà l'utilisateur {username} !",
-    'stoped_subscription': "Vous ne suivez désormais plus l'utilisateur {username}"
+    'stopped_subscription': "Vous ne suivez désormais plus l'utilisateur {username}"
 
 }
 
@@ -67,8 +68,12 @@ class subscriptions(View):
             else:
                 error_message = 'already_following'
 
-        return redirect(
-            f'/subscriptions/?error_message={error_message}&validation_message={validation_message}&followed_user={followed_user_username}')
+        query = {'error_message': error_message,
+                 'validation_message': validation_message,
+                 'followed_user': followed_user_username}
+        query_string = urlencode(query)
+
+        return redirect(f'/subscriptions/?{query_string}')
 
 
 class delete_subscription(View):
@@ -81,7 +86,11 @@ class delete_subscription(View):
         subscription_to_delete = UserFollows.objects.get(user=actual_user,
                                                          followed_user=followed_user)
         subscription_to_delete.delete()
-        validation_message = 'stoped_subscription'
+        validation_message = 'stopped_subscription'
 
-        return redirect(
-            f'/subscriptions/?validation_message={validation_message}&followed_user={followed_user.username}')
+        query = {'validation_message': validation_message,
+                 'followed_user': followed_user.username}
+        query_string = urlencode(query)
+
+        return redirect(f'/subscriptions/?{query_string}')
+
