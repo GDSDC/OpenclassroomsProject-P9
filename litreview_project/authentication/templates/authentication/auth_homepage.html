@@ -15,7 +15,7 @@
         <!--@formatter:off-->
         <a href="{% url "sign_up" %}">
         <!--@formatter:on-->
-            <button>S'inscrire</button>
+        <button>S'inscrire</button>
         </a>
     </section>
 
@@ -29,6 +29,9 @@
             {{form.password}}
             <button type="submit">Se connecter</button>
         </form>
+        {% if error_message is not None %}
+        <p class="error__message">{{ error_message }}</p>
+        {% endif %}
     </section>
 
 </div>

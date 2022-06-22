@@ -10,7 +10,8 @@ from urllib.parse import urlencode
 
 _MESSAGES = {
     'not_same_password': "Vous avez entré deux mots de passe différents.",
-    'username_already_used': "Le nom d'utilisateur '{username}' est déjà utilisé."
+    'username_already_used': "Le nom d'utilisateur '{username}' est déjà utilisé.",
+    'incorrect_credentials': "Vos identifiants sont incorrects. Merci de réessayer."
 }
 
 
@@ -26,8 +27,19 @@ class sign_in_form(View):
     """View for home page / authentication"""
 
     def get(self, request):
-        form = CustomAuthenticationForm(request.POST)
-        return render(request, 'authentication/auth_homepage.html', context={'form': form})
+
+        form = CustomAuthenticationForm()
+
+        error_message = request.GET.get('error_message') if request.GET.get('error_message') != 'None' else None
+        username = request.GET.get('username') if request.GET.get('username') != 'None' else None
+
+        if error_message is not None:
+            error_message = _MESSAGES[error_message]
+        else:
+            error_message = None
+
+        return render(request, 'authentication/auth_homepage.html', context={'form': form,
+                                                                             'error_message': error_message})
 
     def post(self, request):
         username = request.POST.get('username', False)
@@ -37,7 +49,11 @@ class sign_in_form(View):
             login(request, user)
             return redirect('/feed/')
         else:
-            return HttpResponse('<h1>sign in form not valid</h1>')
+            error_message = 'incorrect_credentials'
+            query = {'error_message': error_message}
+            query_string = urlencode(query)
+
+            return redirect(f'/auth/?{query_string}')
 
 
 class sign_up_form(View):
