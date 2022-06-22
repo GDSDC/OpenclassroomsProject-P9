@@ -27,7 +27,7 @@ from follows import views as subscriptions_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # PAGES
-    path('auth/', auth_views.sign_in_form.as_view()),
+    path('auth/', auth_views.sign_in_form.as_view(), name='authentication'),
     path('auth/sign_up/', auth_views.sign_up_form.as_view(), name='sign_up'),
     path('ticket/create/', ticket_views.create_ticket.as_view(), name='create_ticket'),
     path('review/create/', review_views.create_review_ticket.as_view(), name='create_review_ticket'),

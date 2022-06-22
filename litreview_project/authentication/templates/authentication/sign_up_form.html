@@ -8,7 +8,7 @@
 
 <!--Content-->
 {% block content %}
-<div class="row__display">
+<div class="vertical__dispay">
     <form method="POST" class="vertical__dispay">
         {% csrf_token %}
         <p>Nom d'utilisateur</p>
@@ -17,10 +17,15 @@
         {{form.password1}}
         <p>Confirmer votre mot de passe</p>
         {{form.password2}}
-        <a href="/authentication/">
-            <button type="button">Retourner</button>
+        <!--@formatter:off-->
+        <a href="{% url "authentication" %}">
+        <!--@formatter:on-->
+        <button type="button">Retourner</button>
         </a>
         <button type="submit">S'inscrire</button>
     </form>
+    {% if error_message is not None %}
+    <p class="error__message">{{ error_message }}</p>
+    {% endif %}
 </div>
 {% endblock %}
