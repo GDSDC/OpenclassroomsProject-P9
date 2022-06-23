@@ -12,12 +12,12 @@
     <!--@formatter:off-->
     <a href="{% url "create_ticket" %}">
     <!--@formatter:on-->
-    <button>Demander une critique</button>
+    <button class="button">Demander une critique</button>
     </a>
     <!--@formatter:off-->
     <a href="{% url "create_review_ticket" %}">
     <!--@formatter:on-->
-    <button>Créer une critique</button>
+    <button class="button">Créer une critique</button>
     </a>
 </div>
 <div class="row__display">
@@ -41,7 +41,7 @@
             <!--@formatter:off-->
             <a href="{% url "create_review_from_ticket" post.id%}">
                 <!--@formatter:on-->
-            <button>Créer une critique</button>
+            <button class="button">Créer une critique</button>
             </a>
             {% else %}
             <!-- ---- ticket already reviewed ---- -->

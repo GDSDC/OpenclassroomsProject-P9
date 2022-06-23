@@ -20,9 +20,9 @@
         <!--@formatter:off-->
         <a href="{% url "authentication" %}">
         <!--@formatter:on-->
-        <button type="button">Retourner</button>
+        <button type="button" class="button">Retourner</button>
         </a>
-        <button type="submit">S'inscrire</button>
+        <button type="submit" class="button">S'inscrire</button>
     </form>
     {% if error_message is not None %}
     <p class="error__message">{{ error_message }}</p>

@@ -14,7 +14,7 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ user_follows_form.followed_user }}
-            <button type="submit">Envoyer</button>
+            <button type="submit" class="button">Envoyer</button>
         </form>
         {% if error_message is not None %}
         <p class="error__message">{{ error_message }}</p>

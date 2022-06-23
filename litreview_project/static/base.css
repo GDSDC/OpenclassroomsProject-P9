@@ -45,3 +45,16 @@ main {
     height: 100%;
     justify-content: flex-end;
 }
+
+/*********
+Buttons
+ ********/
+.button {
+    border: 1px solid black;
+    color: black;
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+    letter-spacing: 1.5px;
+    border-radius: 5%;
+}
