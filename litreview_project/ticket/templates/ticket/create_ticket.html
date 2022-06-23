@@ -5,6 +5,17 @@
 {% block additional_css %}
 <link rel="stylesheet" href="{% static 'ticket/ticket.css' %}"/>
 {% endblock %}
+{% block additional_js %}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('input[type="file"]').change(function (e) {
+            var fileName = e.target.files[0].name;
+            document.getElementById("selected_image").innerText = `Image selectionnée : ${fileName}`
+        });
+    });
+</script>
+{% endblock %}
 
 <!--Content-->
 {% block content %}
@@ -22,9 +33,13 @@
         {{form.title}}
         <p>Description</p>
         {{form.description}}
-        <p>Image</p>
-        <button type="button" class="button" onclick="document.getElementById('id_image').click()">Télécharger Fichier</button>
-        {{form.image}}
+        <div class="row__display">
+            <button type="button" class="button" onclick="document.getElementById('id_image').click()">
+                Télécharger Fichier
+            </button>
+            {{form.image}}
+            <p id="selected_image">Aucune image selectionnée.</p>
+        </div>
         <button type="submit" class="button">Envoyer</button>
     </form>
 </div>
