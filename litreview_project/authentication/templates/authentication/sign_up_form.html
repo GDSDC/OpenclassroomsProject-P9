@@ -8,14 +8,21 @@
 
 <!--Content-->
 {% block content %}
-<form method="POST" class="vertical__dispay center">
+<h1 class="title">Inscrivez-vous</h1>
+<form method="POST" class="vertical__dispay center" style="margin-top:5vh;">
     {% csrf_token %}
-    <p>Nom d'utilisateur</p>
-    {{form.username}}
-    <p>Mot de passe</p>
-    {{form.password1}}
-    <p>Confirmer votre mot de passe</p>
-    {{form.password2}}
+    <div class="field">
+        <p>Nom d'utilisateur</p>
+        {{form.username}}
+    </div>
+    <div class="field">
+        <p>Mot de passe</p>
+        {{form.password1}}
+    </div>
+    <div class="field">
+        <p>Confirmer votre mot de passe</p>
+        {{form.password2}}
+    </div>
     <div class="row__display">
         <!--@formatter:off-->
         <a href="{% url "authentication" %}">

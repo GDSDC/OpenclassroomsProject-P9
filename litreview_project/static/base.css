@@ -16,6 +16,7 @@ nav {
 main {
     /* Borders for debugging */
     border: 2px solid mediumblue;
+    height: 95%;
 }
 
 .row__display {
@@ -47,8 +48,22 @@ main {
 }
 
 .center {
-  margin-left: auto;
-  margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+
+.field {
+    /* Borders for debugging */
+    border: 2px solid lightpink;
+    margin: 5px;
+    min-width: 200px;
+}
+
+.title {
+        /* Borders for debugging */
+    border: 2px solid lightpink;
+    text-align: center;
 }
 
 /*********
