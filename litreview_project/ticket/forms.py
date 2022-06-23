@@ -1,12 +1,13 @@
 from django import forms
 from .models import Ticket
 
+
 class TicketForm(forms.ModelForm):
     """Form for creating tickets"""
 
     class Meta:
         model = Ticket
-        fields = ['title','description','image','user', 'id']
+        fields = ['title', 'description', 'image', 'user', 'id']
         widgets = {
-            'image' : forms.FileInput(attrs={'style' :'visibility:hidden'})
+            'image': forms.FileInput(attrs={'style': 'visibility:hidden'})
         }

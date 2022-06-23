@@ -46,6 +46,11 @@ main {
     justify-content: flex-end;
 }
 
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /*********
 Buttons
  ********/
@@ -57,4 +62,5 @@ Buttons
     text-align: center;
     letter-spacing: 1.5px;
     border-radius: 5%;
+    margin: 10px;
 }
