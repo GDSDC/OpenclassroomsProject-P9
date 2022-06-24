@@ -30,8 +30,9 @@ class SignInForm(View):
 
         form = CustomAuthenticationForm()
 
-        error_message = request.GET.get('error_message') if request.GET.get('error_message') != 'None' else None
-        username = request.GET.get('username') if request.GET.get('username') != 'None' else None
+        error_message = request.GET.get('error_message') \
+            if request.GET.get('error_message') != 'None' \
+            else None
 
         if error_message is not None:
             error_message = _MESSAGES[error_message]

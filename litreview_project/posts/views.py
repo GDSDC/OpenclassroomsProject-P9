@@ -14,13 +14,16 @@ class PostsPage(View):
     @method_decorator(login_required(login_url='/auth/'))
     def get(self, request):
         actual_user = request.user
+
         # tickets
         tickets = Ticket.objects.filter(user=actual_user)
         tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+
         # reviews
         reviews = Review.objects.filter(user=actual_user)
         reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
 
+        # result
         posts = chain(tickets, reviews)
 
         return render(request, 'posts/posts.html', context={'posts': posts,

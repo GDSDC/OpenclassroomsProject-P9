@@ -9,5 +9,5 @@ class UserFollowForm(forms.ModelForm):
         model = UserFollows
         fields = ['user', 'followed_user']
         widgets = {
-            'followed_user' : forms.TextInput(attrs={'placeholder': 'Nom d\'utilisateur'})
+            'followed_user': forms.TextInput(attrs={'placeholder': 'Nom d\'utilisateur'})
         }
