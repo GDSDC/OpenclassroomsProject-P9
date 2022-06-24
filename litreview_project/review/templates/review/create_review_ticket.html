@@ -5,6 +5,17 @@
 {% block additional_css %}
 <link rel="stylesheet" href="{% static 'review/review.css' %}"/>
 {% endblock %}
+{% block additional_js %}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('input[type="file"]').change(function (e) {
+            let fileName = e.target.files[0].name;
+            document.getElementById("selected_image").innerText = `Image selectionnée : ${fileName}`
+        });
+    });
+</script>
+{% endblock %}
 
 <!--Content-->
 {% block content %}
@@ -17,18 +28,28 @@
         {{ticket_form.title}}
         <p>Description</p>
         {{ticket_form.description}}
-        <p>Image</p>
-        {{ticket_form.image}}
-    </div>
-    <div class="vertical__dispay">
-        <p>Critique</p>
-        <p>Titre</p>
-        {{review_form.headline}}
-        <p>Note</p>
-        {{review_form.rating}}
-        <p>Commentaire</p>
-        {{review_form.body}}
-        <button type="submit" class="button">Envoyer</button>
-    </div>
+        <div class="row__display">
+            <button type="button" class="button"
+                    onclick="document.getElementById('id_image').click()">
+                Télécharger Fichier
+            </button>
+            {{ticket_form.image}}
+            <p id="selected_image">Aucune image selectionnée.</p>
+        </div>
+        <div class="vertical__dispay">
+            <p>Critique</p>
+            <p>Titre</p>
+            {{review_form.headline}}
+            <p>Note</p>
+            {{review_form.rating}}
+            <p>Commentaire</p>
+            {{review_form.body}}
+            <div class="row__display">
+            <a href="javascript:history.go(-1)">
+                <button type="button" class="button">Annuler</button>
+            </a>
+                <button type="submit" class="button">Envoyer</button>
+            </div>
+        </div>
 </form>
 {% endblock %}
