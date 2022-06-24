@@ -61,7 +61,7 @@ main {
 }
 
 .title {
-        /* Borders for debugging */
+    /* Borders for debugging */
     border: 2px solid lightpink;
     text-align: center;
 }
@@ -78,4 +78,11 @@ Buttons
     letter-spacing: 1.5px;
     border-radius: 5%;
     margin: 10px;
+    /*cursor: grab;*/
+    transition: 0.7s;
+}
+
+.button:hover {
+    background-color: #EEEEEE;
+    transition: 0.7s;
 }
