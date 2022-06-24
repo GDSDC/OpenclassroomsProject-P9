@@ -37,8 +37,8 @@ class DeleteTicket(View):
     """Link to delete a ticket"""
 
     @method_decorator(login_required(login_url='/auth/'))
-    def get(self, request, id):
-        ticket = Ticket.objects.get(id=id)
+    def get(self, request, ticket_id):
+        ticket = Ticket.objects.get(id=ticket_id)
         ticket.delete()
         return redirect('/posts/')
 
@@ -47,14 +47,14 @@ class EditTicket(View):
     """View to edit a ticket"""
 
     @method_decorator(login_required(login_url='/auth/'))
-    def get(self, request, id):
-        ticket = Ticket.objects.get(id=id)
+    def get(self, request, ticket_id):
+        ticket = Ticket.objects.get(id=ticket_id)
         form = TicketForm(instance=ticket)
         return render(request, 'ticket/create_ticket.html', context={'form': form, 'edit': True})
 
     @method_decorator(login_required(login_url='/auth/'))
-    def post(self, request, id):
-        ticket = Ticket.objects.get(id=id)
+    def post(self, request, ticket_id):
+        ticket = Ticket.objects.get(id=ticket_id)
         actual_user = request.user
         title = request.POST.get('title', False)
         description = request.POST.get('description', False)

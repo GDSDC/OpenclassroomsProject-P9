@@ -93,4 +93,3 @@ class DeleteSubscription(View):
         query_string = urlencode(query)
 
         return redirect(f'/subscriptions/?{query_string}')
-

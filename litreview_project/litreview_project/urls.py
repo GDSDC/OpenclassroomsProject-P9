@@ -38,12 +38,12 @@ urlpatterns = [
     # END POINTS
     path('', auth_views.HomePage.as_view(), name='home'),
     path('auth/logout/', include("django.contrib.auth.urls")),
-    path('ticket/<int:id>/delete/', ticket_views.DeleteTicket.as_view(), name='delete_ticket'),
-    path('ticket/<int:id>/edit/', ticket_views.EditTicket.as_view(), name='edit_ticket'),
+    path('ticket/<int:ticket_id>/delete/', ticket_views.DeleteTicket.as_view(), name='delete_ticket'),
+    path('ticket/<int:ticket_id>/edit/', ticket_views.EditTicket.as_view(), name='edit_ticket'),
     path('review/ticket_id_<int:ticket_id>/create/',
-         review_views.CreateReviewFromTicket.as_view(),name='create_review_from_ticket'),
-    path('review/<int:id>/delete/', review_views.DeleteReview.as_view(), name='delete_review'),
-    path('review/<int:id>/edit/', review_views.EditReview.as_view(), name='edit_review'),
+         review_views.CreateReviewFromTicket.as_view(), name='create_review_from_ticket'),
+    path('review/<int:review_id>/delete/', review_views.DeleteReview.as_view(), name='delete_review'),
+    path('review/<int:review_id>/edit/', review_views.EditReview.as_view(), name='edit_review'),
     path('subscriptions/followed_user_id_<int:followed_user_id>/delete/',
          subscriptions_views.DeleteSubscription.as_view(), name='delete_subscription'),
 

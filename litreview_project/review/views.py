@@ -86,8 +86,8 @@ class DeleteReview(View):
     """Link to delete a review"""
 
     @method_decorator(login_required(login_url='/auth/'))
-    def get(self, request, id):
-        review = Review.objects.get(id=id)
+    def get(self, request, review_id):
+        review = Review.objects.get(id=review_id)
         review.delete()
         return redirect('/posts/')
 
@@ -96,8 +96,8 @@ class EditReview(View):
     """View to edit a review"""
 
     @method_decorator(login_required(login_url='/auth/'))
-    def get(self, request, id):
-        review = Review.objects.get(id=id)
+    def get(self, request, review_id):
+        review = Review.objects.get(id=review_id)
         review_form = ReviewForm(instance=review)
         ticket = Ticket.objects.get(id=review.ticket.id)
         return render(request, 'review/create_review_from_ticket.html', context={'review_form': review_form,
@@ -105,8 +105,8 @@ class EditReview(View):
                                                                                  'edit': True})
 
     @method_decorator(login_required(login_url='/auth/'))
-    def post(self, request, id):
-        review = Review.objects.get(id=id)
+    def post(self, request, review_id):
+        review = Review.objects.get(id=review_id)
         ticket = Ticket.objects.get(id=review.ticket.id)
         actual_user = request.user
         headline = request.POST.get('headline', False)
