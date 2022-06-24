@@ -45,6 +45,7 @@
                     {% if post.image %}
                     <img src="{{ post.image.url }}" class="ticket__image">
                     {% endif %}
+<!--                    empty element to put button to the right if no image-->
                     <p></p>
                     <!--@formatter:off-->
                     <a href="{% url "create_review_from_ticket" post.id%}">
