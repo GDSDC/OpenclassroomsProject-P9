@@ -8,6 +8,7 @@
 
 <!--Content-->
 {% block content %}
+<h1 class="title">Flux</h1>
 <div class="row__display">
     <!--@formatter:off-->
     <a href="{% url "create_ticket" %}">
@@ -24,44 +25,61 @@
     <div class="vertical__dispay">
         {% for post in posts|dictsortreversed:"time_created" %}
         {% if post.content_type == "TICKET" %}
+
         <!-- //////// TICKET DISPLAY //////// -->
-        <div class="vertical__dispay">
-            {% if post.ticket_status == 'not_reviewed' %}
-            <!-- ----- ticket not reviewed ----- -->
-            {% if post.user == user %}
-            <p>Vous avez demandé un critique</p>
-            {% else %}
-            <p>{{ post.user.username }} a demandé un critique</p>
-            {% endif %}
-            <p>{{ post.time_created | date:'H:i, d F Y' }}</p>
-            <p>Titre : {{ post.title }}</p>
-            {% if post.image %}
-            <img src="{{ post.image.url }}" class="ticket__image">
-            {% endif %}
-            <!--@formatter:off-->
-            <a href="{% url "create_review_from_ticket" post.id%}">
-                <!--@formatter:on-->
-            <button class="button">Créer une critique</button>
-            </a>
-            {% else %}
-            <!-- ---- ticket already reviewed ---- -->
-            {% if post.user == user %}
-            <p>Vous avez demandé un critique</p>
-            {% else %}
-            <p>{{ post.user.username }} a demandé un critique</p>
-            {% endif %}
-            <p>{{ post.time_created | date:'H:i, d F Y' }}</p>
-            <p>Titre : {{ post.title }}</p>
-            <p>Description : {{ post.description }}</p>
-            {% if post.image %}
-            <img src="{{ post.image.url }}" class="ticket__image">
-            {% endif %}
-            {% endif %}
+
+        <!-- ----- ticket not reviewed ----- -->
+        {% if post.ticket_status == 'not_reviewed' %}
+        <div class="ticket__post not__reviewed">
+            <div class="ticket__post__content">
+                <div>
+                    {% if post.user == user %}
+                    <p>Vous avez demandé un critique</p>
+                    {% else %}
+                    <p>{{ post.user.username }} a demandé un critique</p>
+                    {% endif %}
+                    <p>{{ post.time_created | date:'H:i, d F Y' }}</p>
+                </div>
+                <p>Titre : {{ post.title }}</p>
+                <div style="align-items: flex-end">
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}" class="ticket__image">
+                    {% endif %}
+                    <p></p>
+                    <!--@formatter:off-->
+                    <a href="{% url "create_review_from_ticket" post.id%}">
+                    <!--@formatter:on-->
+                    <button class="button">Créer une critique</button>
+                    </a>
+                </div>
+            </div>
         </div>
+        {% else %}
+
+        <!-- ---- ticket already reviewed ---- -->
+        <div class="ticket__post already__reviewed">
+            <div class="ticket__post__content">
+                <div>
+                    {% if post.user == user %}
+                    <p>Vous avez demandé un critique</p>
+                    {% else %}
+                    <p>{{ post.user.username }} a demandé un critique</p>
+                    {% endif %}
+                    <p>{{ post.time_created | date:'H:i, d F Y' }}</p>
+                </div>
+                <p>Titre : {{ post.title }}</p>
+                <p>Description : {{ post.description }}</p>
+                {% if post.image %}
+                <img src="{{ post.image.url }}" class="ticket__image">
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
 
         {% elif post.content_type == "REVIEW" %}
         <!-- //////// REVIEW DISPLAY //////// -->
-        <div class="vertical__dispay">
+        <div class="review__post">
             {% if post.user == user %}
             <p>Vous avez publié une critique</p>
             {% else %}
