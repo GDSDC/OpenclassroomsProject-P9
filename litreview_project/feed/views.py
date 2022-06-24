@@ -20,7 +20,15 @@ class feed_page(View):
         # tickets
         tickets = Ticket.objects.filter(user__in=[actual_user] + subscriptions_users)
         tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
-        tickets_reviewed = [review.ticket for review in Review.objects.all()]
+        # tickets not reviewed
+        tickets_not_reviewed = tickets.exclude(
+            id__in=[review.ticket.id for review in Review.objects.filter(ticket__in=tickets)]).annotate(
+            ticket_status=Value('not_reviewed', CharField()))
+        # tickets already reviewed
+        tickets_reviewed = tickets.filter(
+            id__in=[review.ticket.id for review in Review.objects.filter(ticket__in=tickets)]).annotate(
+            ticket_status=Value('already_reviewed', CharField()))
+
         # own reviews
         own_reviews = Review.objects.filter(user=actual_user)
         own_reviews = own_reviews.annotate(content_type=Value('REVIEW', CharField()))
@@ -33,10 +41,9 @@ class feed_page(View):
             user__in=[user_follow.followed_user for user_follow in UserFollows.objects.filter(user=actual_user)])
         subscriptions_reviews = subscriptions_reviews.annotate(content_type=Value('REVIEW', CharField()))
 
-        posts = chain(tickets, own_reviews, reviews_actual_user_tickets, subscriptions_reviews)
+        posts = chain(tickets_not_reviewed,tickets_reviewed, own_reviews, reviews_actual_user_tickets, subscriptions_reviews)
 
         return render(request, 'feed/feed.html',
                       context={'posts': posts,
-                               'tickets_reviewed': tickets_reviewed,
                                'rating_range': RATING_RANGE,
                                'rating_char': RATING_CHAR})

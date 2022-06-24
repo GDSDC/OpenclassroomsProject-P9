@@ -26,7 +26,7 @@
         {% if post.content_type == "TICKET" %}
         <!-- //////// TICKET DISPLAY //////// -->
         <div class="vertical__dispay">
-            {% if post not in tickets_reviewed %}
+            {% if post.ticket_status == 'not_reviewed' %}
             <!-- ----- ticket not reviewed ----- -->
             {% if post.user == user %}
             <p>Vous avez demandé un critique</p>
