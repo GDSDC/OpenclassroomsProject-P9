@@ -15,7 +15,7 @@ _MESSAGES = {
 }
 
 
-class homepage(View):
+class HomePage(View):
     """Redirection when no specific route is given '/'"""
 
     @method_decorator(login_required(login_url='/auth/'))
@@ -23,7 +23,7 @@ class homepage(View):
         return redirect('/feed/')
 
 
-class sign_in_form(View):
+class SignInForm(View):
     """View for home page / authentication"""
 
     def get(self, request):
@@ -56,7 +56,7 @@ class sign_in_form(View):
             return redirect(f'/auth/?{query_string}')
 
 
-class sign_up_form(View):
+class SignUpForm(View):
     """View for signing up with filling a form"""
 
     def get(self, request):

@@ -8,7 +8,7 @@ from itertools import chain
 from django.db.models import CharField, Value
 
 
-class posts_page(View):
+class PostsPage(View):
     """View to see and change your own publications (ticket and/or reviews)"""
 
     @method_decorator(login_required(login_url='/auth/'))

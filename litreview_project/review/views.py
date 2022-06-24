@@ -9,7 +9,7 @@ from review.models import Review
 from review.forms import ReviewForm
 
 
-class create_review_ticket(View):
+class CreateReviewTicket(View):
     """View to create a review with no ticket associated (need to create a ticket also)"""
 
     @method_decorator(login_required(login_url='/auth/'))
@@ -51,7 +51,7 @@ class create_review_ticket(View):
             return HttpResponse(f"<p>review_form errors : {review_form.errors}</p>")
 
 
-class create_review_from_ticket(View):
+class CreateReviewFromTicket(View):
     """View to create a review in response to a ticket (no need to create a ticket)"""
 
     @method_decorator(login_required(login_url='/auth/'))
@@ -82,7 +82,7 @@ class create_review_from_ticket(View):
             return HttpResponse(f"<p>review_form errors : {review_form.errors}</p>")
 
 
-class delete_review(View):
+class DeleteReview(View):
     """Link to delete a review"""
 
     @method_decorator(login_required(login_url='/auth/'))
@@ -92,7 +92,7 @@ class delete_review(View):
         return redirect('/posts/')
 
 
-class edit_review(View):
+class EditReview(View):
     """View to edit a review"""
 
     @method_decorator(login_required(login_url='/auth/'))

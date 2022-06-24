@@ -7,7 +7,7 @@ from ticket.forms import TicketForm
 from ticket.models import Ticket
 
 
-class create_ticket(View):
+class CreateTicket(View):
     """View to create a ticket"""
 
     @method_decorator(login_required(login_url='/auth/'))
@@ -33,7 +33,7 @@ class create_ticket(View):
             return HttpResponse(f"<p>{form.errors}</p>")
 
 
-class delete_ticket(View):
+class DeleteTicket(View):
     """Link to delete a ticket"""
 
     @method_decorator(login_required(login_url='/auth/'))
@@ -43,7 +43,7 @@ class delete_ticket(View):
         return redirect('/posts/')
 
 
-class edit_ticket(View):
+class EditTicket(View):
     """View to edit a ticket"""
 
     @method_decorator(login_required(login_url='/auth/'))

@@ -9,7 +9,7 @@ from itertools import chain
 from django.db.models import CharField, Value
 
 
-class feed_page(View):
+class FeedPage(View):
     """View to see and interact with publications (ticket and/or reviews)"""
 
     @method_decorator(login_required(login_url='/auth/'))

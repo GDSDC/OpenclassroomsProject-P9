@@ -18,7 +18,7 @@ _MESSAGES = {
 }
 
 
-class subscriptions(View):
+class Subscriptions(View):
     """View for subscriptions page"""
 
     @method_decorator(login_required(login_url='/auth/'))
@@ -76,7 +76,7 @@ class subscriptions(View):
         return redirect(f'/subscriptions/?{query_string}')
 
 
-class delete_subscription(View):
+class DeleteSubscription(View):
     """Link to delete subscription"""
 
     @method_decorator(login_required(login_url='/auth/'))
