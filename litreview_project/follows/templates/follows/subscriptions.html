@@ -8,8 +8,8 @@
 
 <!--Content-->
 {% block content %}
-<div class="vertical__dispay">
-    <div class="vertical__dispay">
+<div style="border:2px solid red">
+    <div class="subscriptions__item">
         <p>Suivre d'autres utilisateurs</p>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
@@ -18,12 +18,13 @@
         </form>
         {% if error_message is not None %}
         <p class="error__message">{{ error_message }}</p>
-        {% endif %}
-        {% if validation_message is not None %}
+        {% elif validation_message is not None %}
         <p class="validation__message">{{ validation_message }}</p>
+        {% else %}
+        <p></p>
         {% endif %}
     </div>
-    <div class="vertical__dispay">
+    <div class="subscriptions__item">
         <p>Abonnements</p>
         {% if not subscriptions %}
         <p class="error__message">Vous n'êtes abonnées à aucun utilisateur.</p>
@@ -41,11 +42,8 @@
             {% endfor %}
         </table>
         {% endif %}
-        <table>
-
-        </table>
     </div>
-    <div class="vertical__dispay">
+    <div class="subscriptions__item">
         <p>Abonnés</p>
         {% if not subscribers %}
         <p class="error__message">Vous n'avez aucun abonné pour le moment.</p>
