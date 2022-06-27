@@ -28,7 +28,7 @@ class CreateTicket(View):
                           request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('/posts/')
+            return redirect('/feed/')
         else:
             return HttpResponse(f"<p>{form.errors}</p>")
 

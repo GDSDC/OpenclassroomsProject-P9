@@ -46,7 +46,7 @@ class CreateReviewTicket(View):
                                   'ticket': ticket})
         if review_form.is_valid():
             review_form.save()
-            return redirect('/posts/')
+            return redirect('/feed/')
         else:
             return HttpResponse(f"<p>review_form errors : {review_form.errors}</p>")
 
@@ -77,7 +77,7 @@ class CreateReviewFromTicket(View):
                                   'ticket': ticket})
         if review_form.is_valid():
             review_form.save()
-            return redirect('/posts/')
+            return redirect('/feed/')
         else:
             return HttpResponse(f"<p>review_form errors : {review_form.errors}</p>")
 
