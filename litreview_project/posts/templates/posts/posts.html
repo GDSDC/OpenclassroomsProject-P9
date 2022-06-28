@@ -9,65 +9,61 @@
 <!--Content-->
 {% block content %}
 <h1 class="title">Vos posts</h1>
-<div class="row__display">
-    <div class="vertical__dispay">
-        {% for post in posts|dictsortreversed:"time_created" %}
-        {% if post.content_type == "TICKET" %}
-        <div class="vertical__dispay">
-            <p>Vous avez publié un ticket</p>
-            <p>Titre : {{ post.title }}</p>
-            <p>{{ post.time_created | date:'H:i, d F Y' }}</p>
-            <p>Description : {{ post.description }}</p>
-            {% if post.image %}
-            <img src="{{ post.image.url }}" class="ticket__image">
-            {% endif %}
-            <!--@formatter:off-->
-            <a href="{% url "edit_ticket" post.id %}">
-            <!--@formatter:on-->
-            <button class="button">Modifier</button>
-            </a>
-            <!--@formatter:off-->
-            <a href="{% url "delete_ticket" post.id %}">
-            <!--@formatter:on-->
-            <button class="button">Supprimer</button>
-            </a>
-        </div>
-        {% elif post.content_type == "REVIEW" %}
-        <div class="vertical__dispay">
-            <p>Vous avez publié une critique</p>
-            <p>{{ post.time_created | date:'H:i, d F Y' }}</p>
-            <p>Titre : {{ post.headline }}</p>
-            <p>Note : {% for _ in rating_range %}
-                {% if forloop.counter0 >= post.rating %}
-                {% else %}
-                 {{ rating_char }}
-                {% endif %}
-                {% endfor %}</p>
-            <p>Commentaire : {{ post.body }}</p>
-            <div class="ticket__in__review">
-                {% if post.ticket.user == user %}
-                <p>Ticket : Vous</p>
-                {% else %}
-                <p>Ticket : {{ post.ticket.user }}</p>
-                {% endif %}
-                <p>Titre : {{ post.ticket.title }}</p>
-                {% if post.ticket.image %}
-                <img src="{{ post.ticket.image.url }}" class="ticket__image">
-                {% endif %}
-            </div>
-            <!--@formatter:off-->
-            <a href="{% url "edit_review" post.id %}">
-            <!--@formatter:on-->
-            <button class="button">Modifier</button>
-            </a>
-            <!--@formatter:off-->
-            <a href="{% url "delete_review" post.id %}">
-            <!--@formatter:on-->
-            <button class="button">Supprimer</button>
-            </a>
-        </div>
-        {% endif %}
-        {% endfor %}
-    </div>
+{% for post in posts|dictsortreversed:"time_created" %}
+{% if post.content_type == "TICKET" %}
+<div class="vertical__dispay">
+    <p>Vous avez publié un ticket</p>
+    <p>Titre : {{ post.title }}</p>
+    <p>{{ post.time_created | date:'H:i, d F Y' }}</p>
+    <p>Description : {{ post.description }}</p>
+    {% if post.image %}
+    <img src="{{ post.image.url }}" class="ticket__image">
+    {% endif %}
+    <!--@formatter:off-->
+    <a href="{% url "edit_ticket" post.id %}">
+    <!--@formatter:on-->
+    <button class="button">Modifier</button>
+    </a>
+    <!--@formatter:off-->
+    <a href="{% url "delete_ticket" post.id %}">
+    <!--@formatter:on-->
+    <button class="button">Supprimer</button>
+    </a>
 </div>
+{% elif post.content_type == "REVIEW" %}
+<div class="vertical__dispay">
+    <p>Vous avez publié une critique</p>
+    <p>{{ post.time_created | date:'H:i, d F Y' }}</p>
+    <p>Titre : {{ post.headline }}</p>
+    <p>Note : {% for _ in rating_range %}
+        {% if forloop.counter0 >= post.rating %}
+        {% else %}
+        {{ rating_char }}
+        {% endif %}
+        {% endfor %}</p>
+    <p>Commentaire : {{ post.body }}</p>
+    <div class="ticket__in__review">
+        {% if post.ticket.user == user %}
+        <p>Ticket : Vous</p>
+        {% else %}
+        <p>Ticket : {{ post.ticket.user }}</p>
+        {% endif %}
+        <p>Titre : {{ post.ticket.title }}</p>
+        {% if post.ticket.image %}
+        <img src="{{ post.ticket.image.url }}" class="ticket__image">
+        {% endif %}
+    </div>
+    <!--@formatter:off-->
+    <a href="{% url "edit_review" post.id %}">
+    <!--@formatter:on-->
+    <button class="button">Modifier</button>
+    </a>
+    <!--@formatter:off-->
+    <a href="{% url "delete_review" post.id %}">
+    <!--@formatter:on-->
+    <button class="button">Supprimer</button>
+    </a>
+</div>
+{% endif %}
+{% endfor %}
 {% endblock %}

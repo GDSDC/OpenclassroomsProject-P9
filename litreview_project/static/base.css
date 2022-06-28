@@ -35,6 +35,8 @@ main {
     flex-direction: column;
     width: 50%;
     align-items: center;
+    margin: auto;
+
 }
 
 .menu {
@@ -48,9 +50,15 @@ main {
 }
 
 .center {
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;
+    margin: auto;
+}
+
+.global__width{
+    width: 50%;
+}
+
+.global__margin__bottom, div {
+    margin-bottom: 2%;
 }
 
 .field {
@@ -93,10 +101,7 @@ Tickets
 .ticket__post {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    /*align-items: center;*/
     border-radius: 10px;
-    margin: 10px;
 }
 
 .not__reviewed {
@@ -119,8 +124,7 @@ Tickets
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    justify-content: space-between
+    justify-content: space-between;
 }
 
 /*********
@@ -130,8 +134,19 @@ Reviews
     background-color: #4297A0;
     display: flex;
     flex-direction: column;
-    width: 100%;
     align-items: center;
     border-radius: 10px;
+}
+
+.review__post__content{
     margin: 10px;
+}
+
+.review__post__content div {
+        /* Borders for debugging */
+    border: 2px solid lightsalmon;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
