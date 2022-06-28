@@ -53,7 +53,7 @@ main {
     margin: auto;
 }
 
-.global__width{
+.global__width {
     width: 50%;
 }
 
@@ -115,17 +115,27 @@ Tickets
 }
 
 .ticket__post__content {
-    margin: 10px
+    margin: 10px;
 }
 
-.ticket__post__content div {
+.ticket__post__content__row {
     /* Borders for debugging */
     border: 2px solid lightsalmon;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
 }
+
+.ticket__image {
+    /* Borders for debugging */
+    border: 2px solid red;
+    max-width: 30%;
+    min-width: 150px;
+    max-height: 300px;
+}
+
+
 
 /*********
 Reviews
@@ -134,19 +144,41 @@ Reviews
     background-color: #4297A0;
     display: flex;
     flex-direction: column;
-    align-items: center;
     border-radius: 10px;
 }
 
-.review__post__content{
+.review__post__content {
     margin: 10px;
 }
 
-.review__post__content div {
-        /* Borders for debugging */
+.review__post__content__row {
+    /* Borders for debugging */
     border: 2px solid lightsalmon;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
+}
+
+.ticket__in__review {
+    background-color: #99c5c9;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.review__rating {
+    display: flex;
+    flex-direction: row;
+    font-size: 200%;
+    margin-left: 10px;
+    align-items: center;
+}
+
+.rating__off{
+    opacity: 0.2;
+}
+
+.rating__on {
+    opacity: 0.8;
 }

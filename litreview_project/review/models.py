@@ -4,7 +4,8 @@ from django.db import models
 from ticket.models import Ticket
 
 
-RATING_CHAR = '*'
+RATING_CHAR_ON = '★'
+RATING_CHAR_OFF = '☆'
 RATING_RANGE = range(5)
 
 class Review(models.Model):

@@ -2,11 +2,11 @@
     text-align: center;
 }
 
-.ticket__image {
-    /* Borders for debugging */
-    border: 2px solid red;
-    max-width: 60%;
-}
+/*.ticket__image {*/
+/*    !* Borders for debugging *!*/
+/*    border: 2px solid red;*/
+/*    max-width: 60%;*/
+/*}*/
 
 .ticket__in__review {
         /* Borders for debugging */

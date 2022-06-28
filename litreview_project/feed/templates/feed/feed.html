@@ -1,4 +1,4 @@
-{% extends 'base_logged_in.html' %}
+{% extends 'base_feed_post.html' %}
 
 <!--Additional style for authentication-->
 {% load static %}
@@ -6,111 +6,25 @@
 <link rel="stylesheet" href="{% static 'feed/feed.css' %}"/>
 {% endblock %}
 
-<!--Content-->
-{% block content %}
+<!--feed header-->
+{% block feed_header %}
 <h1 class="title">Flux</h1>
 <div class="row__display">
     <!--@formatter:off-->
     <a href="{% url "create_ticket" %}">
-    <!--@formatter:on-->
-    <button class="button">Demander une critique</button>
-    </a>
-    <!--@formatter:off-->
+    <button class="button">Demander une critique</button></a>
     <a href="{% url "create_review_ticket" %}">
+    <button class="button">Créer une critique</button></a>
     <!--@formatter:on-->
-    <button class="button">Créer une critique</button>
-    </a>
 </div>
-<div class="center global__width global__margin__bottom">
-    {% for post in posts|dictsortreversed:"time_created" %}
-    {% if post.content_type == "TICKET" %}
+{% endblock %}
 
-    <!-- //////// TICKET DISPLAY //////// -->
-
-    <!-- ----- ticket not reviewed ----- -->
-    {% if post.ticket_status == 'not_reviewed' %}
-    <div class="ticket__post not__reviewed">
-        <div class="ticket__post__content">
-            <div>
-                {% if post.user == user %}
-                <p>Vous avez demandé un critique</p>
-                {% else %}
-                <p>{{ post.user.username }} a demandé un critique</p>
-                {% endif %}
-                <p>{{ post.time_created | date:'H:i, d F Y' }}</p>
-            </div>
-            <p>Titre : {{ post.title }}</p>
-            <div style="align-items: flex-end">
-                {% if post.image %}
-                <img src="{{ post.image.url }}" class="ticket__image">
-                {% endif %}
-                <!-- empty element to put button to the right if no image-->
-                <p></p>
-                <!--@formatter:off-->
-                <a href="{% url "create_review_from_ticket" post.id%}">
-                <!--@formatter:on-->
-                <button class="button">Créer une critique</button>
-                </a>
-            </div>
-        </div>
-    </div>
-    {% else %}
-
-    <!-- ---- ticket already reviewed ---- -->
-    <div class="ticket__post already__reviewed">
-        <div class="ticket__post__content">
-            <div>
-                {% if post.user == user %}
-                <p>Vous avez demandé un critique</p>
-                {% else %}
-                <p>{{ post.user.username }} a demandé un critique</p>
-                {% endif %}
-                <p>{{ post.time_created | date:'H:i, d F Y' }}</p>
-            </div>
-            <p>Titre : {{ post.title }}</p>
-            <p>Description : {{ post.description }}</p>
-            {% if post.image %}
-            <img src="{{ post.image.url }}" class="ticket__image">
-            {% endif %}
-        </div>
-    </div>
-    {% endif %}
-
-
-    {% elif post.content_type == "REVIEW" %}
-    <!-- //////// REVIEW DISPLAY //////// -->
-    <div class="review__post">
-        <div class="review__post__content">
-            <div>
-                {% if post.user == user %}
-                <p>Vous avez publié une critique</p>
-                {% else %}
-                <p>{{ post.user.username }} a publié un critique</p>
-                {% endif %}
-                <p>{{ post.time_created | date:'H:i, d F Y' }}</p>
-            </div>
-            <p>Titre : {{ post.headline }}</p>
-            <p>Note : {% for _ in rating_range %}
-                {% if forloop.counter0 >= post.rating %}
-                {% else %}
-                {{ rating_char }}
-                {% endif %}
-                {% endfor %}</p>
-            <p>Commentaire : {{ post.body }}</p>
-            <div class="ticket__in__review">
-                {% if post.ticket.user == user %}
-                <p>Ticket : Vous</p>
-                {% else %}
-                <p>Ticket : {{ post.ticket.user }}</p>
-                {% endif %}
-                <p>Titre : {{ post.ticket.title }}</p>
-                {% if post.ticket.image %}
-                <img src="{{ post.ticket.image.url }}" class="ticket__image">
-                {% endif %}
-            </div>
-        </div>
-    </div>
-    {% endif %}
-    {% endfor %}
-    {% endblock %}
-</div>
+<!--buttons-->
+{% block feed_review_button %}
+<!-- empty element to put button to the right if no image-->
+<p></p>
+<!--@formatter:off-->
+<a href="{% url "create_review_from_ticket" post.id%}">
+<button class="button">Créer une critique</button></a>
+<!--@formatter:on-->
+{% endblock %}

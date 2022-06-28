@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from ticket.models import Ticket
-from review.models import Review, RATING_CHAR, RATING_RANGE
+from review.models import Review, RATING_CHAR_ON, RATING_CHAR_OFF, RATING_RANGE
 from follows.models import UserFollows
 from django.views import View
 from django.contrib.auth.decorators import login_required
@@ -55,4 +55,5 @@ class FeedPage(View):
         return render(request, 'feed/feed.html',
                       context={'posts': posts,
                                'rating_range': RATING_RANGE,
-                               'rating_char': RATING_CHAR})
+                               'rating_char_on': RATING_CHAR_ON,
+                               'rating_char_off': RATING_CHAR_OFF})
