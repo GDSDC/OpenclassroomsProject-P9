@@ -28,7 +28,7 @@ main {
     justify-content: center;
 }
 
-.vertical__dispay {
+.vertical__display {
     /* Borders for debugging */
     border: 2px solid lightgreen;
     display: flex;

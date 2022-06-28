@@ -10,7 +10,7 @@
 {% block content %}
 <div class="row__display">
 
-    <section id="sign-up" class="vertical__dispay">
+    <section id="sign-up" class="vertical__display">
         <p>Inscrivez-vous maintenant</p>
         <!--@formatter:off-->
         <a href="{% url "sign_up" %}">
@@ -19,9 +19,9 @@
         </a>
     </section>
 
-    <section id="sign-in" class="vertical__dispay">
+    <section id="sign-in" class="vertical__display">
         <p>Connectez-vous</p>
-        <form method="post" class="vertical__dispay">
+        <form method="post" class="vertical__display">
             {% csrf_token %}
             <p>Nom d'utilisateur</p>
             {{form.username}}

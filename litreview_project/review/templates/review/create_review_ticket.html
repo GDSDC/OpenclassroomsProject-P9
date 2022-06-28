@@ -20,9 +20,9 @@
 <!--Content-->
 {% block content %}
 <h1 class="title">Créer une critique</h1>
-<form method="POST" class="vertical__dispay" enctype="multipart/form-data">
+<form method="POST" class="vertical__display" enctype="multipart/form-data">
     {% csrf_token %}
-    <div class="vertical__dispay">
+    <div class="vertical__display">
         <p>Livre / Article</p>
         <p>Titre</p>
         {{ticket_form.title}}
@@ -36,7 +36,7 @@
             {{ticket_form.image}}
             <p id="selected_image">Aucune image selectionnée.</p>
         </div>
-        <div class="vertical__dispay">
+        <div class="vertical__display">
             <p>Critique</p>
             <p>Titre</p>
             {{review_form.headline}}

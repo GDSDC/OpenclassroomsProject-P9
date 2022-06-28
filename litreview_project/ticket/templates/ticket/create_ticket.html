@@ -26,27 +26,29 @@
     Créer une ticket
     {% endif %}
 </h1>
-<div class="row__display">
-    <form method="POST" class="vertical__dispay" enctype="multipart/form-data">
-        {% csrf_token %}
-        <p>Titre</p>
-        {{form.title}}
-        <p>Description</p>
-        {{form.description}}
-        <div class="row__display">
-            <button type="button" class="button"
-                    onclick="document.getElementById('id_image').click()">
-                Télécharger Fichier
-            </button>
-            {{form.image}}
-            <p id="selected_image">Aucune image selectionnée.</p>
-        </div>
-        <div class="row__display">
-            <a href="javascript:history.go(-1)">
-                <button type="button" class="button">Annuler</button>
-            </a>
-            <button type="submit" class="button">Envoyer</button>
-        </div>
-    </form>
+<div class="center global__width global__margin__bottom">
+    <div class="ticket__post not__reviewed">
+        <form method="POST" class="vertical__display" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>Titre</p>
+            {{form.title}}
+            <p>Description</p>
+            {{form.description}}
+            <div class="center">
+                <button type="button" class="button"
+                        onclick="document.getElementById('id_image').click()">
+                    Télécharger Fichier
+                </button>
+                {{form.image}}
+                <p id="selected_image">Aucune image selectionnée.</p>
+            </div>
+            <div class="row__display">
+                <a href="javascript:history.go(-1)">
+                    <button type="button" class="button">Annuler</button>
+                </a>
+                <button type="submit" class="button">Envoyer</button>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}
