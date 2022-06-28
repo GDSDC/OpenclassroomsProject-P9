@@ -20,36 +20,43 @@
 <!--Content-->
 {% block content %}
 <h1 class="title">Créer une critique</h1>
-<form method="POST" class="vertical__display" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="vertical__display">
-        <p>Livre / Article</p>
-        <p>Titre</p>
-        {{ticket_form.title}}
-        <p>Description</p>
-        {{ticket_form.description}}
-        <div class="row__display">
-            <button type="button" class="button"
-                    onclick="document.getElementById('id_image').click()">
-                Télécharger Fichier
-            </button>
-            {{ticket_form.image}}
-            <p id="selected_image">Aucune image selectionnée.</p>
-        </div>
-        <div class="vertical__display">
-            <p>Critique</p>
-            <p>Titre</p>
-            {{review_form.headline}}
-            <p>Note</p>
-            {{review_form.rating}}
-            <p>Commentaire</p>
-            {{review_form.body}}
-            <div class="row__display">
-            <a href="javascript:history.go(-1)">
-                <button type="button" class="button">Annuler</button>
-            </a>
-                <button type="submit" class="button">Envoyer</button>
+<div class="center global__width global__margin__bottom">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="ticket__post not__reviewed">
+            <div class="vertical__display">
+                <p>Livre / Article</p>
+                <p>Titre</p>
+                {{ticket_form.title}}
+                <p>Description</p>
+                {{ticket_form.description}}
+                <div class="row__display">
+                    <button type="button" class="button"
+                            onclick="document.getElementById('id_image').click()">
+                        Télécharger Fichier
+                    </button>
+                    {{ticket_form.image}}
+                    <p id="selected_image">Aucune image selectionnée.</p>
+                </div>
             </div>
         </div>
-</form>
+        <div class="review__post">
+            <div class="vertical__display">
+                <p>Critique</p>
+                <p>Titre</p>
+                {{review_form.headline}}
+                <p>Note</p>
+                {{review_form.rating}}
+                <p>Commentaire</p>
+                {{review_form.body}}
+                <div class="row__display">
+                    <a href="javascript:history.go(-1)">
+                        <button type="button" class="button">Annuler</button>
+                    </a>
+                    <button type="submit" class="button">Envoyer</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 {% endblock %}
