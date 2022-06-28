@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<section class="menu">
-    <p><a href="{% url "feed" %}">Flux</a></p>
-    <p><a href="{% url "posts" %}">Posts</a></p>
-    <p><a href="{% url "subscriptions" %}">Abonnements</p>
-    <p><a href="{% url "logout" %}">Se déconnecter</a></p>
-</section>
+<div class="header-right">
+    <!--@formatter:off-->
+    <a href="{% url "feed" %}" {% block class_feed %}{% endblock %} >Flux</a>
+    <a href="{% url "posts" %}" {% block class_posts %}{% endblock %} >Posts</a>
+    <a href="{% url "subscriptions" %}" {% block class_subscriptions %}{% endblock %} >Abonnements</a>
+    <a href="{% url "logout" %}">Se déconnecter</a>
+    <!--@formatter:on-->
+</div>
 {% endblock %}
+

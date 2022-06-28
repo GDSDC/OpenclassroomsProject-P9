@@ -1,17 +1,52 @@
+/*********
+Header
+ ********/
 header {
-    /* Borders for debugging */
-    border: 2px solid red;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    padding: 10px 10px;
     height: 5%;
-    min-height: 20px;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    z-index: 99999;
 }
 
-nav {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+header a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
 }
+
+header a.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+header a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+header a.active {
+    background-color: #848484;
+    color: white;
+}
+
+.header-right {
+    float: right;
+}
+
+/*********
+Others
+ ********/
+
 
 main {
     /* Borders for debugging */
@@ -36,18 +71,8 @@ main {
     width: 50%;
     align-items: center;
     margin: auto;
-
 }
 
-.menu {
-    /* Borders for debugging */
-    border: 2px solid lightgreen;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 100%;
-    justify-content: flex-end;
-}
 
 .center {
     margin: auto;
@@ -136,7 +161,6 @@ Tickets
 }
 
 
-
 /*********
 Reviews
  ********/
@@ -175,7 +199,7 @@ Reviews
     align-items: center;
 }
 
-.rating__off{
+.rating__off {
     opacity: 0.2;
 }
 

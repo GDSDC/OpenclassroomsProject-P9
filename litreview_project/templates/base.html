@@ -7,14 +7,20 @@
     <link rel="stylesheet" href="{% static 'base.css' %}"/>
     {% block additional_css %}{% endblock %}
     {% block additional_js %}{% endblock %}
+
 </head>
 <body>
 <header>
-    <nav>
-        <strong>LITReview</strong>
+    <nav class="navbar">
+        <!--@formatter:off-->
+        <a href="{% url "home" %}" class="logo">LITReview</a>
+        <!--@formatter:on-->
         {% block header %}{% endblock %}
     </nav>
 </header>
+
+<!--    space for fixed header-->
+<div style="height: 5%;"></div>
 
 <main>
     {% block content %}{% endblock %}
