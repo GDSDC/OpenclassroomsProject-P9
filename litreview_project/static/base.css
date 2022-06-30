@@ -4,7 +4,6 @@ Header
 header {
     overflow: hidden;
     background-color: #f1f1f1;
-    /*padding: 10px 10px;*/
     height: 50px;
     position: fixed;
     top: 0;
@@ -43,6 +42,7 @@ header a.active {
 .header-right {
     float: right;
 }
+
 
 .header__foot_line {
     background-color: #848484;

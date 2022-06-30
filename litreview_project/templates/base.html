@@ -11,17 +11,16 @@
 </head>
 <body>
 <header>
-        <!--@formatter:off-->
-        <a href="{% url "home" %}" class="logo">LITReview</a>
-        <!--@formatter:on-->
-        {% block header %}{% endblock %}
-        <div class="header__foot_line"></div>
+    <!--@formatter:off-->
+    <a href="{% url "home" %}" class="logo">LITReview</a>
+    <!--@formatter:on-->
+    {% block header %}{% endblock %}
+    <div class="header__foot_line"></div>
 </header>
 
-<!--    space for fixed header-->
-<div style="height: 5%;"></div>
-
 <main>
+    <!--    space for fixed header-->
+    <div style="height: 40px;"></div>
     {% block content %}{% endblock %}
 </main>
 
