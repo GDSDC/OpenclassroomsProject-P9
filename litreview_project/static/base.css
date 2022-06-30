@@ -4,11 +4,11 @@ Header
 header {
     overflow: hidden;
     background-color: #f1f1f1;
-    padding: 10px 10px;
-    height: 5%;
+    /*padding: 10px 10px;*/
+    height: 50px;
     position: fixed;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     width: 100%;
     z-index: 99999;
 }
@@ -21,7 +21,8 @@ header a {
     text-decoration: none;
     font-size: 18px;
     line-height: 25px;
-    border-radius: 4px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 header a.logo {
@@ -41,6 +42,12 @@ header a.active {
 
 .header-right {
     float: right;
+}
+
+.header__foot_line {
+    background-color: #848484;
+    margin-top: 49px;
+    height: 1px;
 }
 
 /*********
