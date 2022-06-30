@@ -59,6 +59,8 @@ main {
     /* Borders for debugging */
     border: 2px solid mediumblue;
     height: 95%;
+    width: 100%;
+    left: 0;
 }
 
 .row__display {
@@ -68,6 +70,7 @@ main {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin: 0;
 }
 
 .vertical__display {
@@ -104,6 +107,9 @@ main {
     /* Borders for debugging */
     border: 2px solid lightpink;
     text-align: center;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 20px;
 }
 
 /*********
@@ -126,6 +132,7 @@ Buttons
     background-color: #EEEEEE;
     transition: 0.7s;
 }
+
 
 /*********
 Tickets
