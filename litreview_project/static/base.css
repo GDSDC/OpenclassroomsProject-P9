@@ -57,7 +57,7 @@ Others
 
 main {
     /* Borders for debugging */
-    border: 2px solid mediumblue;
+    outline: 2px solid mediumblue;
     height: 95%;
     width: 100%;
     left: 0;
@@ -65,51 +65,56 @@ main {
 
 .row__display {
     /* Borders for debugging */
-    border: 2px solid lightsalmon;
+    outline: 2px solid lightsalmon;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    /*align-items: center;*/
     justify-content: center;
     margin: 0;
 }
 
 .vertical__display {
     /* Borders for debugging */
-    border: 2px solid lightgreen;
+    outline: 2px solid lightgreen;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
     align-items: center;
     margin: auto;
 }
 
 
 .center {
-    margin: auto;
+    margin: 0 auto 0 auto;
 }
 
 .global__width {
     width: 50%;
 }
 
-.global__margin__bottom, div {
+.ticket__post, .review__post {
     margin-bottom: 2%;
 }
 
 .field {
     /* Borders for debugging */
-    border: 2px solid lightpink;
+    outline: 2px solid lightpink;
     margin: 5px;
     min-width: 200px;
 }
 
+.field, p {
+    margin-bottom: 3px;
+}
+
 .title {
     /* Borders for debugging */
-    border: 2px solid lightpink;
+    outline: 2px solid lightpink;
     text-align: center;
+    line-height: 68.4px;
+    /*padding-top: 10px;*/
+    padding-bottom: 5px;
     margin: 0;
-    padding-top: 10px;
-    padding-bottom: 20px;
 }
 
 /*********
@@ -155,11 +160,12 @@ Tickets
 
 .ticket__post__content {
     margin: 10px;
+    padding: 2px;
 }
 
 .ticket__post__content__row {
     /* Borders for debugging */
-    border: 2px solid lightsalmon;
+    outline: 2px solid lightsalmon;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -168,7 +174,7 @@ Tickets
 
 .ticket__image {
     /* Borders for debugging */
-    border: 2px solid red;
+    outline: 2px solid red;
     max-width: 30%;
     min-width: 150px;
     max-height: 300px;
@@ -187,11 +193,12 @@ Reviews
 
 .review__post__content {
     margin: 10px;
+    padding: 2px;
 }
 
 .review__post__content__row {
     /* Borders for debugging */
-    border: 2px solid lightsalmon;
+    outline: 2px solid lightsalmon;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -207,12 +214,13 @@ Reviews
 
 .review__rating {
     /* Borders for debugging */
-    border: 2px solid lightsalmon;
+    outline: 2px solid lightsalmon;
     display: flex;
     flex-direction: row;
     font-size: 200%;
     padding-left: 10px;
     align-items: center;
+    margin: -20px 0 -20px 0;
 }
 
 .rating__off {

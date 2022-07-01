@@ -14,7 +14,7 @@ class="active"
 <!--Content-->
 {% block content %}
 <h1 class="title feed__title">Flux</h1>
-<div class="row__display">
+<div class="row__display center">
     <!--@formatter:off-->
     <a href="{% url "create_ticket" %}">
     <button class="button">Demander une critique</button></a>
@@ -22,7 +22,7 @@ class="active"
     <button class="button">Créer une critique</button></a>
     <!--@formatter:on-->
 </div>
-<div class="center global__width global__margin__bottom">
+<div class="center global__width">
     {% for post in posts|dictsortreversed:"time_created" %}
     {% if post.content_type == "TICKET" %}
 

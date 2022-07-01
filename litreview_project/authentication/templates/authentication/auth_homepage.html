@@ -8,30 +8,39 @@
 
 <!--Content-->
 {% block content %}
-<div class="row__display">
-
-    <section id="sign-up" class="vertical__display">
-        <p>Inscrivez-vous maintenant</p>
-        <!--@formatter:off-->
-        <a href="{% url "sign_up" %}">
-        <!--@formatter:on-->
-        <button class="button">S'inscrire</button>
-        </a>
+<div class="row__display auth__global__margin">
+    <section id="sign-up" class="center global__width">
+        <h1 class="title">Inscrivez-vous</h1>
+        <div class="vertical__display auth__item global__width">
+            <p>Inscrivez-vous maintenant</p>
+            <!--@formatter:off-->
+            <a href="{% url "sign_up" %}">
+            <!--@formatter:on-->
+            <button class="button">S'inscrire</button>
+            </a>
+        </div>
     </section>
 
-    <section id="sign-in" class="vertical__display">
-        <p>Connectez-vous</p>
-        <form method="post" class="vertical__display">
-            {% csrf_token %}
-            <p>Nom d'utilisateur</p>
-            {{form.username}}
-            <p>Mot de passe</p>
-            {{form.password}}
-            <button type="submit" class="button">Se connecter</button>
-        </form>
-        {% if error_message is not None %}
-        <p class="error__message">{{ error_message }}</p>
-        {% endif %}
+    <section id="sign-in" class="center global__width">
+        <h1 class="title">Connectez-vous</h1>
+        <div class="vertical__display auth__item global__width">
+            <p>Connectez-vous maintenant</p>
+            <form method="post" class="vertical__display">
+                {% csrf_token %}
+                <div class="field">
+                    <p>Nom d'utilisateur</p>
+                    {{form.username}}
+                </div>
+                <div class="field">
+                    <p>Mot de passe</p>
+                    {{form.password}}
+                </div>
+                <button type="submit" class="button">Se connecter</button>
+            </form>
+            {% if error_message is not None %}
+            <p class="error__message">{{ error_message }}</p>
+            {% endif %}
+        </div>
     </section>
 
 </div>

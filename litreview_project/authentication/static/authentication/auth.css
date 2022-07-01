@@ -2,3 +2,12 @@
     color: red;
     text-align: center;
 }
+
+.auth__item {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.auth__global__margin {
+    margin-top: 20px;
+}

@@ -15,7 +15,7 @@ class="active"
 <!--Content-->
 {% block content %}
 <h1 class="title">Vos posts</h1>
-<div class="center global__width global__margin__bottom">
+<div class="center global__width">
     {% for post in posts|dictsortreversed:"time_created" %}
     {% if post.content_type == "TICKET" %}
 
