@@ -177,6 +177,8 @@ Tickets
     max-width: 30%;
     min-width: 150px;
     max-height: 300px;
+    padding: 3px;
+    border-radius: 10px;
 }
 
 
