@@ -3,10 +3,10 @@ from django.conf import settings
 from django.db import models
 from ticket.models import Ticket
 
-
 RATING_CHAR_ON = '★'
 RATING_CHAR_OFF = '☆'
 RATING_RANGE = range(5)
+
 
 class Review(models.Model):
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)
