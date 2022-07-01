@@ -56,16 +56,16 @@ Others
 
 
 main {
-    /* Borders for debugging */
-    outline: 2px solid mediumblue;
+    /*!* Borders for debugging *!*/
+    /*outline: 2px solid mediumblue;*/
     height: 95%;
     width: 100%;
     left: 0;
 }
 
 .row__display {
-    /* Borders for debugging */
-    outline: 2px solid lightsalmon;
+    /*!* Borders for debugging *!*/
+    /*outline: 2px solid lightsalmon;*/
     display: flex;
     flex-direction: row;
     /*align-items: center;*/
@@ -74,8 +74,8 @@ main {
 }
 
 .vertical__display {
-    /* Borders for debugging */
-    outline: 2px solid lightgreen;
+    /*!* Borders for debugging *!*/
+    /*outline: 2px solid lightgreen;*/
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -97,8 +97,8 @@ main {
 }
 
 .field {
-    /* Borders for debugging */
-    outline: 2px solid lightpink;
+    /*!* Borders for debugging *!*/
+    /*outline: 2px solid lightpink;*/
     margin: 5px;
     min-width: 200px;
 }
@@ -108,8 +108,8 @@ main {
 }
 
 .title {
-    /* Borders for debugging */
-    outline: 2px solid lightpink;
+    /*!* Borders for debugging *!*/
+    /*outline: 2px solid lightpink;*/
     text-align: center;
     line-height: 68.4px;
     /*padding-top: 10px;*/
@@ -129,7 +129,6 @@ Buttons
     letter-spacing: 1.5px;
     border-radius: 5%;
     margin: 10px;
-    /*cursor: grab;*/
     transition: 0.7s;
 }
 
@@ -164,8 +163,8 @@ Tickets
 }
 
 .ticket__post__content__row {
-    /* Borders for debugging */
-    outline: 2px solid lightsalmon;
+    /*!* Borders for debugging *!*/
+    /*outline: 2px solid lightsalmon;*/
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -173,8 +172,8 @@ Tickets
 }
 
 .ticket__image {
-    /* Borders for debugging */
-    outline: 2px solid red;
+    /*!* Borders for debugging *!*/
+    /*outline: 2px solid red;*/
     max-width: 30%;
     min-width: 150px;
     max-height: 300px;
@@ -197,8 +196,8 @@ Reviews
 }
 
 .review__post__content__row {
-    /* Borders for debugging */
-    outline: 2px solid lightsalmon;
+    /*!* Borders for debugging *!*/
+    /*outline: 2px solid lightsalmon;*/
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -213,8 +212,8 @@ Reviews
 }
 
 .review__rating {
-    /* Borders for debugging */
-    outline: 2px solid lightsalmon;
+    /*!* Borders for debugging *!*/
+    /*outline: 2px solid lightsalmon;*/
     display: flex;
     flex-direction: row;
     font-size: 200%;

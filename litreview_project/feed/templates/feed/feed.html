@@ -5,6 +5,10 @@
 {% block additional_css %}
 <link rel="stylesheet" href="{% static 'feed/feed.css' %}"/>
 {% endblock %}
+{% block additional_js %}
+<script type="text/javascript" src="{% static 'feed/feed.js' %}"></script>
+{% endblock %}
+
 
 <!--Activate header button-->
 {% block class_feed %}
@@ -14,7 +18,7 @@ class="active"
 <!--Content-->
 {% block content %}
 <h1 class="title feed__title">Flux</h1>
-<div class="row__display center">
+<div id="top-actions-section" class="row__display center">
     <!--@formatter:off-->
     <a href="{% url "create_ticket" %}">
     <button class="button">Demander une critique</button></a>
