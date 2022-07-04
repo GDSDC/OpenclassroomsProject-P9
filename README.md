@@ -30,21 +30,38 @@ Activez votre environnement virtuel env nouvellement créé.
 source env/bin/activate
 ```
 
-Installez les paquets présents dans la liste requirements.txt
+Installez les paquets présents dans la liste requirements.txt.
 ```bash
 pip install -r requirements.txt
+```
+
+### 3. Initialisation de la base de données
+
+Accédez au dossier de travail.
+```bash
+cd litreview_project
+```
+
+Procédez à une recherche de migrations.
+```bash
+python manage.py makemigrations
+```
+
+Lancer les migrations nécessaires.
+```bash
+python manage.py migrate
 ```
 
 ## Utilisation
 
 ### 1. Démarrage du serveur local
 
-Accédez au dossier de travail
+Accédez au dossier de travail.
 ```bash
 cd litreview_project
 ```
 
-Démarrer le serveur local
+Démarrez le serveur local.
 ```python
 python manage.py runserver
 ```
