@@ -35,7 +35,7 @@ Installez les paquets présents dans la liste requirements.txt.
 pip install -r requirements.txt
 ```
 
-### 3. Initialisation de la base de données
+### 4. Initialisation de la base de données
 
 Accédez au dossier de travail.
 ```bash
