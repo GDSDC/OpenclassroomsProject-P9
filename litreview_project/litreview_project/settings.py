@@ -29,7 +29,7 @@ if os.path.isfile(BASE_DIR / '.env'):
 SECRET_KEY = os.getenv('SECRET_KEY', '-----secret_key-for-dev-----')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', False)
+DEBUG = os.getenv('DEBUG', True)
 
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', os.getenv('DJANGO_ALLOWED_HOSTS')]
 
