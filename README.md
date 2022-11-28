@@ -12,6 +12,7 @@
 - [Requirements](#reqs)
 - [Architecture](#architecture)
 - [Configuration locale](#localconfig)
+- [Tests](#tests)
 - [Présentation](#presentation)
 
 <a id="obj"></a>
@@ -132,6 +133,20 @@ python manage.py runserver
 ### 2. Navigation
 
 Accédez au site sur votre navigateur depuis l'url http://127.0.0.1:8000/
+
+<a id="tests"></a>
+### Tests
+
+Utilisez les identifiants de connexion suivant pour tester l'application.
+
+| Utilisateur           | Identifiant   | Mot de passe |
+|-----------------------|---------------|--------------|
+| Utilisateur Principal | `u_principal` | `up`         |
+| Utilisateur Suivi n°1 | `u_suivi_1`   | `us1`        |
+| Utilisateur Suivi n°2 | `u_suivi_2`   | `us1`        |
+| Utilisateur Suiveur   | `u_suiveur`   | `us`         |
+
+Voir la présentation pour en savoir plus sur les liens entre les utilisateurs de test.
 
 
 <a id="presentation"></a>
