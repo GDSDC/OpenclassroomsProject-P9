@@ -138,9 +138,3 @@ Accédez au site sur votre navigateur depuis l'url http://127.0.0.1:8000/
 
 
 
-
-# OpenclassroomsProject-P9
-OpenClassRooms Project-P9 est un projet Python ayant un but d'apprentissage dans le cadre de la formation OpenClassRooms Développeur d'Application Python.  
-Thème du projet : Développez une application Web en utilisant Django.
-
-
