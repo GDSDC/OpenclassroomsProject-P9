@@ -29,6 +29,9 @@ L'objectif du projet est de développer cette application Web en utilisant Djang
 ## Technologies Utilisées
 - [Python3](https://www.python.org/)
 - [Django](https://www.djangoproject.com/)
+- [HTML](https://developer.mozilla.org/fr/docs/Web/HTML)
+- [JavaScrip](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+- [CSS](https://developer.mozilla.org/fr/docs/Web/CSS)
 
 <a id="reqs"></a>
 ## Requirements
